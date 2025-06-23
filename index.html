@@ -29,20 +29,13 @@
       margin-top: 0;
     }
 
-    .cta-button {
-      background: #FFD3DC;
-      color: #8B003E;
-      padding: 12px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    .cta-text {
+      font-size: 1.1rem;
       margin-top: 25px;
-      font-weight: bold;
-    }
-
-    .cta-button:hover {
-      background: #ffb1c3;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
     }
 
     .benefits {
@@ -143,9 +136,9 @@
   <header>
     <h1>Gilas</h1>
     <p>Real-Time Career Insights. Smarter Decisions.</p>
-    <button class="cta-button" onclick="document.getElementById('register').scrollIntoView({behavior: 'smooth'})">
-      Join the Waitlist
-    </button>
+    <div class="cta-text">
+      A data-driven platform to help you navigate your path with confidence. Discover how long it takes to master a field, what you'll need to learn, and where it can take you — before you commit.
+    </div>
   </header>
 
   <section class="benefits">
@@ -163,31 +156,28 @@
     <p>Sign up for early access and get notified when Gilas launches.</p>
 
     <p class="data-note">
-      Gilas gathers data from verified real professionals in each field, instaed of outdated guess-based information. We transform this into digestible insights that reflect actual timeframes, workloads, and career outcomes.
+      Gilas gathers data from verified real professionals in each field, instead of outdated guess-based information. We transform this into digestible insights that reflect actual timeframes, workloads, and career outcomes.
     </p>
 
-    <!-- Replace the action URL below with your actual Google Form POST URL -->
-    <!-- Invisible iframe to handle Google Form submission silently -->
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLScsW5FyHArhWH0PPP8fqrdCcrUGw4CI21bjYYIGONc4i-bV1A/formResponse" method="POST" target="hidden_iframe" onsubmit="showThanks()">
-  <input type="email" name="entry.1700493845" placeholder="Your Email Address" required />
-  <br/>
-  <button type="submit">Pre-Register</button>
-</form>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLScsW5FyHArhWH0PPP8fqrdCcrUGw4CI21bjYYIGONc4i-bV1A/formResponse" method="POST" target="hidden_iframe" onsubmit="showThanks()">
+      <input type="email" name="entry.1700493845" placeholder="Your Email Address" required />
+      <br/>
+      <button type="submit">Join the Waitlist</button>
+    </form>
 
-<!-- Simple confirmation message -->
-<p id="thankyou-msg" style="display:none; margin-top: 15px; color: #8B003E; font-weight: bold;">
-  ✅ Thank you! You're on the waitlist.
-</p>
+    <p id="thankyou-msg" style="display:none; margin-top: 15px; color: #8B003E; font-weight: bold;">
+      ✅ Thank you! You're on the waitlist.
+    </p>
 
-<script>
-  function showThanks() {
-    setTimeout(() => {
-      document.getElementById('thankyou-msg').style.display = 'block';
-    }, 500);
-  }
-</script>
+    <script>
+      function showThanks() {
+        setTimeout(() => {
+          document.getElementById('thankyou-msg').style.display = 'block';
+        }, 500);
+      }
+    </script>
   </section>
 
   <footer>
