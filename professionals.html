@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gilas Contributor Form</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff1f4;
+      color: #2c0e14;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #8B003E;
+      color: white;
+      padding: 60px 20px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin: 0 auto;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+
+    .form-container {
+      max-width: 700px;
+      background: white;
+      margin: 50px auto;
+      padding: 40px 35px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #8B003E;
+      margin-bottom: 10px;
+    }
+
+    .sub-note {
+      font-size: 0.95rem;
+      color: #444;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .radio-group {
+      margin-bottom: 20px;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #8B003E;
+      color: white;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #700030;
+    }
+
+    .confidentiality {
+      background: #ffd3dc;
+      color: #8B003E;
+      font-size: 0.9rem;
+      padding: 12px 16px;
+      border-left: 5px solid #8B003E;
+      margin-top: 30px;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    hr {
+      margin: 30px 0;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Gilas Contributor Form</h1>
+    <p>
+      Thank you for helping others make informed career choices. This quick 4–5 minute form helps Gilas collect real insights from professionals like you. Your identity will remain confidential.
+    </p>
+  </header>
+
+  <section class="form-container">
+    <h2>Your Professional Profile</h2>
+    <p class="sub-note">Fields marked with * are required.</p>
+
+    <form action="#" method="POST">
+      <!-- Required Fields -->
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Institutional Email *</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="career">Your Current Job Title / Role *</label>
+      <input type="text" id="career" name="career" placeholder="e.g., Software Engineer, Clinical Pharmacist" required />
+
+      <label for="city">City and Country of Work *</label>
+      <input type="text" id="city" name="city" placeholder="e.g., Tehran, Iran or Boston, USA" required />
+
+      <label for="education">Highest Level of Education *</label>
+      <select id="education" name="education" required>
+        <option value="">-- Select --</option>
+        <option value="High School">High School</option>
+        <option value="Associate">Associate Degree</option>
+        <option value="Bachelor">Bachelor's Degree</option>
+        <option value="Master">Master's Degree</option>
+        <option value="PhD/MD/Doctorate">PhD / MD / Other Doctorate</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="university">Last Degree Institution (Optional)</label>
+      <input type="text" id="university" name="university" placeholder="e.g., University of Toronto" />
+
+      <label for="experience">Years of Experience in Your Current Career *</label>
+      <select id="experience" name="experience" required>
+        <option value="">-- Select --</option>
+        <option value="0-2">0–2 years</option>
+        <option value="3-5">3–5 years</option>
+        <option value="6-10">6–10 years</option>
+        <option value="10+">10+ years</option>
+      </select>
+
+      <label>Typical Weekly Work Hours *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="hours" value="Less than 30" required /> Less than 30</label>
+        <label><input type="radio" name="hours" value="30–40" /> 30–40</label>
+        <label><input type="radio" name="hours" value="41–50" /> 41–50</label>
+        <label><input type="radio" name="hours" value="50+" /> Over 50</label>
+      </div>
+
+      <label for="notes">Anything You'd Like to Add? (Optional)</label>
+      <textarea id="notes" name="notes" placeholder="e.g., career challenges, lifestyle insights, salary trends..."></textarea>
+
+      <!-- Optional Insights -->
+      <hr>
+      <h2 style="font-size: 1.4rem;">Optional Insights (To Help Us Grow Smarter)</h2>
+      <p class="sub-note">These questions are optional, but your answers help us improve the platform for others.</p>
+
+      <label>Do you work remotely in your current role? <span style="font-weight: normal;">(Optional)</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="remote" value="Fully remote" /> Fully remote</label>
+        <label><input type="radio" name="remote" value="Hybrid" /> Hybrid</label>
+        <label><input type="radio" name="remote" value="On-site" /> On-site</label>
+        <label><input type="radio" name="remote" value="Prefer not to say" /> Prefer not to say</label>
+      </div>
+
+      <label for="sector">What general industry are you part of? <span style="font-weight: normal;">(Optional)</span></label>
+      <select id="sector" name="sector">
+        <option value="">-- Select --</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Education & Research">Education & Research</option>
+        <option value="Tech & Software">Tech & Software</option>
+        <option value="Engineering & Manufacturing">Engineering & Manufacturing</option>
+        <option value="Finance & Business">Finance & Business</option>
+        <option value="Government & Policy">Government & Policy</option>
+        <option value="Creative & Design">Creative & Design</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="salary">Estimated annual income range (USD) <span style="font-weight: normal;">(Optional, Approximate)</span></label>
+      <select id="salary" name="salary">
+        <option value="">-- Select --</option>
+        <option value="<25k">&lt; $25,000</option>
+        <option value="25k–50k">$25,000 – $50,000</option>
+        <option value="50k–75k">$50,000 – $75,000</option>
+        <option value="75k–100k">$75,000 – $100,000</option>
+        <option value="100k–150k">$100,000 – $150,000</option>
+        <option value="150k+">$150,000+</option>
+        <option value="Prefer not to say">Prefer not to say</option>
+      </select>
+
+      <label for="satisfaction">How satisfied are you with your current career? <span style="font-weight: normal;">(Optional)</span></label>
+      <select id="satisfaction" name="satisfaction">
+        <option value="">-- Select --</option>
+        <option value="Very satisfied">Very satisfied</option>
+        <option value="Somewhat satisfied">Somewhat satisfied</option>
+        <option value="Neutral">Neutral</option>
+        <option value="Somewhat dissatisfied">Somewhat dissatisfied</option>
+        <option value="Very dissatisfied">Very dissatisfied</option>
+      </select>
+
+      <label>Are you considering changing your career path within the next 1–2 years? <span style="font-weight: normal;">(Optional)</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="switching" value="Yes" /> Yes</label>
+        <label><input type="radio" name="switching" value="Maybe" /> Maybe</label>
+        <label><input type="radio" name="switching" value="No" /> No</label>
+        <label><input type="radio" name="switching" value="Prefer not to say" /> Prefer not to say</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="confidentiality">
+      🔒 <strong>Privacy First:</strong><br>
+      Your responses will be used only to create aggregated, anonymous insights. We never display your name, email, or any identifying detail publicly. Your contribution is secure and deeply valued.
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Gilas. All rights reserved.
+  </footer>
+
+</body>
+</html>
