@@ -42,7 +42,7 @@
       display: flex;
       justify-content: center;
       margin-bottom: 20px;
-      animation: fadeIn 1.2s ease;
+      animation: fadeIn 1s ease;
     }
 
     .logo-header a {
@@ -67,7 +67,7 @@
       color: white;
       padding: 70px 20px;
       text-align: center;
-      animation: fadeIn 1.5s ease;
+      animation: fadeIn 1s ease;
     }
 
     header h1 {
@@ -87,7 +87,7 @@
       margin-left: auto;
       margin-right: auto;
       line-height: 1.6;
-      animation: fadeInUp 1.5s ease;
+      animation: fadeInUp 1s ease;
     }
 
     .benefits {
@@ -121,7 +121,7 @@
       border-radius: 12px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       text-align: center;
-      animation: fadeInUp 1.2s ease;
+      animation: fadeInUp 1s ease;
     }
 
     .register h3 {
@@ -189,8 +189,8 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInUp {
