@@ -13,6 +13,30 @@
       line-height: 1.6;
     }
 
+    /* Logo styles */
+    .logo-container {
+      position: relative;
+      background-color: #8B003E;
+      padding: 10px 20px;
+    }
+
+    .logo-link {
+      display: inline-block;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+      transform: scale(1.05) rotate(-1deg);
+      opacity: 0.9;
+    }
+
+    .logo {
+      height: 45px;
+      width: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     header {
       background-color: #8B003E;
       color: white;
@@ -88,12 +112,20 @@
   </style>
 </head>
 <body>
+
+  <!-- Logo at top -->
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="gilas.png" alt="Gilas Logo" class="logo" />
+    </a>
+  </div>
+
   <header>
     <h1>About Gilas</h1>
     <p>
-  <strong>Sweet clarity for your career</strong><br>
-  <span class="sub-line">A data-driven platform helping you navigate your path with confidence.</span>
-</p>
+      <strong>Sweet clarity for your career</strong><br>
+      <span class="sub-line">A data-driven platform helping you navigate your path with confidence.</span>
+    </p>
   </header>
 
   <main>
@@ -124,5 +156,6 @@
   <footer>
     &copy; 2025 Gilas. All rights reserved.
   </footer>
+
 </body>
 </html>
