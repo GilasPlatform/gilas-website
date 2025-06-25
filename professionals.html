@@ -13,6 +13,30 @@
       overflow-x: hidden;
     }
 
+    /* Logo styles */
+    .logo-container {
+      position: relative;
+      background-color: #8B003E;
+      padding: 10px 20px;
+    }
+
+    .logo-link {
+      display: inline-block;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+      transform: scale(1.05) rotate(-1deg);
+      opacity: 0.9;
+    }
+
+    .logo {
+      height: 45px;
+      width: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     header {
       background: #8B003E;
       color: white;
@@ -138,6 +162,13 @@
 </head>
 <body>
 
+  <!-- Clickable logo section -->
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="gilas.png" alt="Gilas Logo" class="logo" />
+    </a>
+  </div>
+
   <header>
     <h1>Gilas Contributor Form</h1>
     <p>
@@ -150,7 +181,6 @@
     <p class="sub-note">Fields marked with * are required.</p>
 
     <form action="https://formspree.io/f/myzjbyqv" method="POST">
-      <!-- Required Fields -->
       <label for="name">Full Name *</label>
       <input type="text" id="name" name="name" required />
 
@@ -197,12 +227,11 @@
       <label for="notes">Anything You'd Like to Add? (Optional)</label>
       <textarea id="notes" name="notes" placeholder="e.g., career challenges, lifestyle insights, salary trends..."></textarea>
 
-      <!-- Optional Insights -->
       <hr>
       <h2 style="font-size: 1.4rem;">Optional Insights (To Help Us Grow Smarter)</h2>
       <p class="sub-note">These questions are optional, but your answers help us improve the platform for others.</p>
 
-      <label>Do you work remotely in your current role? <span style="font-weight: normal;">(Optional)</span></label>
+      <label>Do you work remotely in your current role?</label>
       <div class="radio-group">
         <label><input type="radio" name="remote" value="Fully remote" /> Fully remote</label>
         <label><input type="radio" name="remote" value="Hybrid" /> Hybrid</label>
@@ -210,7 +239,7 @@
         <label><input type="radio" name="remote" value="Prefer not to say" /> Prefer not to say</label>
       </div>
 
-      <label for="sector">What general industry are you part of? <span style="font-weight: normal;">(Optional)</span></label>
+      <label for="sector">What general industry are you part of?</label>
       <select id="sector" name="sector">
         <option value="">-- Select --</option>
         <option value="Healthcare">Healthcare</option>
@@ -223,7 +252,7 @@
         <option value="Other">Other</option>
       </select>
 
-      <label for="salary">Estimated annual income range (USD) <span style="font-weight: normal;">(Optional, Approximate)</span></label>
+      <label for="salary">Estimated annual income range (USD)</label>
       <select id="salary" name="salary">
         <option value="">-- Select --</option>
         <option value="<25k">&lt; $25,000</option>
@@ -235,7 +264,7 @@
         <option value="Prefer not to say">Prefer not to say</option>
       </select>
 
-      <label for="satisfaction">How satisfied are you with your current career? <span style="font-weight: normal;">(Optional)</span></label>
+      <label for="satisfaction">How satisfied are you with your current career?</label>
       <select id="satisfaction" name="satisfaction">
         <option value="">-- Select --</option>
         <option value="Very satisfied">Very satisfied</option>
@@ -245,7 +274,7 @@
         <option value="Very dissatisfied">Very dissatisfied</option>
       </select>
 
-      <label>Are you considering changing your career path within the next 1–2 years? <span style="font-weight: normal;">(Optional)</span></label>
+      <label>Are you considering changing your career path within the next 1–2 years?</label>
       <div class="radio-group">
         <label><input type="radio" name="switching" value="Yes" /> Yes</label>
         <label><input type="radio" name="switching" value="Maybe" /> Maybe</label>
