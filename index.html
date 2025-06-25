@@ -38,35 +38,34 @@
       border-bottom: 2px solid #ffe4ec;
     }
 
-    /* Centered logo above title */
-    .logo-centered {
+    .logo-header {
       display: flex;
       justify-content: center;
-      margin-top: 40px;
+      margin-bottom: 20px;
       animation: fadeIn 1.2s ease;
     }
 
-    .logo-centered a {
+    .logo-header a {
       display: inline-block;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .logo-centered a:hover {
+    .logo-header a:hover {
       transform: scale(1.05) rotate(-1deg);
       opacity: 0.9;
     }
 
-    .logo-centered img {
+    .logo-header img {
       height: 90px;
       width: auto;
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     header {
       background: #8B003E;
       color: white;
-      padding: 70px 20px 50px;
+      padding: 70px 20px;
       text-align: center;
       animation: fadeIn 1.5s ease;
     }
@@ -184,7 +183,7 @@
         font-size: 1.6rem;
       }
 
-      .logo-centered img {
+      .logo-header img {
         height: 70px;
       }
     }
@@ -208,14 +207,12 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- Centered logo above header -->
-  <div class="logo-centered">
-    <a href="index.html">
-      <img src="gilas.png" alt="Gilas Logo" />
-    </a>
-  </div>
-
   <header>
+    <div class="logo-header">
+      <a href="index.html">
+        <img src="gilas.png" alt="Gilas Logo" />
+      </a>
+    </div>
     <h1>Gilas</h1>
     <p>Real-Time Career Insights. Smarter Decisions.</p>
     <div class="cta-text">
