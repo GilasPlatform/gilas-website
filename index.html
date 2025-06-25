@@ -16,10 +16,33 @@
       background-color: #8B003E;
       display: flex;
       justify-content: center;
+      align-items: center;
       padding: 15px 0;
       position: sticky;
       top: 0;
       z-index: 1000;
+      position: relative;
+    }
+
+    .logo-link {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+      transform: scale(1.05) rotate(-1deg);
+      opacity: 0.9;
+    }
+
+    .logo {
+      height: 45px;
+      width: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     nav a {
@@ -173,6 +196,9 @@
 <body>
 
   <nav>
+    <a href="index.html" class="logo-link">
+      <img src="gilas.png" alt="Gilas Logo" class="logo" />
+    </a>
     <a href="professionals.html">Professionals</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
