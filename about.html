@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Gilas</title>
   <style>
     body {
@@ -13,15 +13,23 @@
       line-height: 1.6;
     }
 
-    /* Logo styles */
-    .logo-container {
-      position: relative;
+    nav {
       background-color: #8B003E;
-      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo-link {
-      display: inline-block;
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      display: flex;
+      align-items: center;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
@@ -35,6 +43,21 @@
       width: auto;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a:hover {
+      color: #ffe4ec;
+      border-bottom: 2px solid #ffe4ec;
     }
 
     header {
@@ -113,12 +136,14 @@
 </head>
 <body>
 
-  <!-- Logo at top -->
-  <div class="logo-container">
+  <nav>
     <a href="index.html" class="logo-link">
       <img src="gilas.png" alt="Gilas Logo" class="logo" />
     </a>
-  </div>
+    <a href="professionals.html">Professionals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
   <header>
     <h1>About Gilas</h1>
