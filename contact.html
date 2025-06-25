@@ -28,6 +28,30 @@
       scroll-behavior: smooth;
     }
 
+    /* Logo styles */
+    .logo-container {
+      position: relative;
+      background-color: var(--primary-color);
+      padding: 10px 20px;
+    }
+
+    .logo-link {
+      display: inline-block;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .logo-link:hover {
+      transform: scale(1.05) rotate(-1deg);
+      opacity: 0.9;
+    }
+
+    .logo {
+      height: 45px;
+      width: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
     header {
       background-color: var(--primary-color);
       color: var(--white);
@@ -151,6 +175,13 @@
   </style>
 </head>
 <body>
+
+  <!-- Clickable logo section -->
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="gilas.png" alt="Gilas Logo" class="logo" />
+    </a>
+  </div>
 
   <header>
     <h1>Contact Gilas</h1>
