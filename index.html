@@ -34,11 +34,27 @@
   transition: color 0.3s ease, border-bottom 0.3s ease;
   border-bottom: 2px solid transparent;
     }
-
+    
     nav a:hover {
       color: #ffe4ec;
       border-bottom: 2px solid #ffe4ec;
     }
+
+.get-started-btn {
+  padding: 8px 16px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: transparent;
+  line-height: normal;
+  margin: 0 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #ffe4ec;
+  color: #8B003E;
+  border-color: #ffe4ec;
+}
 
     .logo-header {
       display: flex;
@@ -204,6 +220,7 @@
 <body>
 
   <nav>
+    <a href="get-started.html" class="get-started-btn">Get Started</a>
     <a href="professionals.html">Professionals</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
