@@ -14,47 +14,47 @@
 
     nav {
       background-color: #8B003E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  height: 70px; /* standard fixed height */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav a {
       color: white;
-  text-decoration: none;
-  margin: 0 20px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 70px; /* matches nav height */
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  border-bottom: 2px solid transparent;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 70px;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
     }
-    
+
     nav a:hover {
       color: #ffe4ec;
       border-bottom: 2px solid #ffe4ec;
     }
 
-.get-started-btn {
-  padding: 8px 16px;
-  border: 2px solid white;
-  border-radius: 20px;
-  background-color: transparent;
-  line-height: normal;
-  margin: 0 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    .get-started-btn {
+      padding: 8px 16px;
+      border: 2px solid white;
+      border-radius: 20px;
+      background-color: transparent;
+      line-height: normal;
+      margin: 0 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.get-started-btn:hover {
-  background-color: #ffe4ec;
-  color: #8B003E;
-  border-color: #ffe4ec;
-}
+    .get-started-btn:hover {
+      background-color: #ffe4ec;
+      color: #8B003E;
+      border-color: #ffe4ec;
+    }
 
     .logo-header {
       display: flex;
@@ -259,23 +259,24 @@
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLScsW5FyHArhWH0PPP8fqrdCcrUGw4CI21bjYYIGONc4i-bV1A/formResponse" method="POST" target="hidden_iframe" onsubmit="showThanks()">
-  <input type="email" name="entry.1700493845" placeholder="Email" required />
-  <br/>
-  <button type="submit">Join the Waitlist</button>
-</form>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLScsW5FyHArhWH0PPP8fqrdCcrUGw4CI21bjYYIGONc4i-bV1A/formResponse"
+          method="POST" target="hidden_iframe" onsubmit="showThanks()">
+      <input type="email" name="entry.1700493845" placeholder="Your Email Address" required />
+      <br/>
+      <button type="submit">Join the Waitlist</button>
+    </form>
 
-<p id="thankyou-msg" style="display:none; margin-top: 15px; color: #8B003E; font-weight: bold;">
-  ✅ Thank you! You're on the waitlist.
-</p>
+    <p id="thankyou-msg" style="display:none; margin-top: 15px; color: #8B003E; font-weight: bold;">
+      ✅ Thank you! You're on the waitlist.
+    </p>
 
-<script>
-  function showThanks() {
-    setTimeout(() => {
-      document.getElementById('thankyou-msg').style.display = 'block';
-    }, 500);
-  }
-</script>
+    <script>
+      function showThanks() {
+        setTimeout(() => {
+          document.getElementById('thankyou-msg').style.display = 'block';
+        }, 500);
+      }
+    </script>
   </section>
 
   <footer>
