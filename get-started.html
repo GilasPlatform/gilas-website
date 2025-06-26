@@ -7,11 +7,11 @@
   <style>
     body {
       margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff1f4;
-  color: #2c0e14;
-  overflow-x: hidden;
-  padding-bottom: 50px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff1f4;
+      color: #2c0e14;
+      overflow-x: hidden;
+      padding-bottom: 50px;
     }
 
     nav {
@@ -64,20 +64,20 @@
     }
 
     .get-started-btn {
-  padding: 8px 16px;
-  border: 2px solid white;
-  border-radius: 20px;
-  background-color: transparent;
-  line-height: normal;
-  margin: 0 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+      padding: 8px 16px;
+      border: 2px solid white;
+      border-radius: 20px;
+      background-color: transparent;
+      line-height: normal;
+      margin: 0 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.get-started-btn:hover {
-  background-color: #ffe4ec;
-  color: #8B003E;
-  border-color: #ffe4ec;
-}
+    .get-started-btn:hover {
+      background-color: #ffe4ec;
+      color: #8B003E;
+      border-color: #ffe4ec;
+    }
 
     header {
       background-color: #8B003E;
@@ -106,13 +106,13 @@
 
     .container {
       display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start; /* prevents vertical stretching */
-  padding: 80px 20px 100px; /* top and bottom padding */
-  animation: fadeIn 1s ease-in;
-  min-height: calc(100vh - 110px); /* prevents overlapping footer or navbar */
-  box-sizing: border-box;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 20px 100px;
+      animation: fadeIn 1s ease-in;
+      min-height: calc(100vh - 110px);
+      box-sizing: border-box;
     }
 
     .blurred {
@@ -161,20 +161,134 @@
       animation: fadeIn 1s ease-in-out;
     }
 
+    /* Job Categories Overlay Styles */
+    .job-categories-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 999;
+      display: none;
+      padding: 120px 40px 40px;
+      overflow-y: auto;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .city-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #8B003E;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .category-card {
+      background: linear-gradient(135deg, #8B003E, #a0214e);
+      color: white;
+      padding: 20px 30px;
+      margin: 15px auto;
+      max-width: 600px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(139, 0, 62, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(139, 0, 62, 0.4);
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .category-card:hover::before {
+      left: 100%;
+    }
+
+    .category-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .category-arrow {
+      transition: transform 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .category-card.active .category-arrow {
+      transform: rotate(180deg);
+    }
+
+    .jobs-waterfall {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease-out, padding 0.6s ease-out;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      margin-top: 0;
+    }
+
+    .jobs-waterfall.active {
+      max-height: 500px;
+      padding: 20px 0 10px;
+      margin-top: 15px;
+    }
+
+    .job-item {
+      padding: 12px 20px;
+      margin: 8px 0;
+      background: rgba(255, 255, 255, 0.9);
+      color: #8B003E;
+      border-radius: 8px;
+      font-weight: 500;
+      transform: translateX(-30px);
+      opacity: 0;
+      transition: all 0.4s ease;
+      border-left: 4px solid #8B003E;
+    }
+
+    .job-item.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .job-item:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateX(10px);
+      box-shadow: 0 4px 15px rgba(139, 0, 62, 0.2);
+    }
+
     .back-button {
       position: fixed;
-  top: 90px; /* lowered from 20px */
-  left: 20px;
-  background: #8B003E;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  z-index: 1000;
-  display: none;
-  transition: background 0.3s ease;
+      top: 90px;
+      left: 20px;
+      background: #8B003E;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+      display: none;
+      transition: background 0.3s ease;
     }
 
     .back-button:hover {
@@ -189,17 +303,32 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes waterfallIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .job-item.animate-in {
+      animation: waterfallIn 0.4s ease-out forwards;
+    }
   </style>
 </head>
 <body>
   <nav>
     <a href="index.html" class="logo-link">
-    <img src="gilas.png" alt="Gilas Logo" class="logo" />
-  </a>
-  <a href="get-started.html" class="get-started-btn">Get Started</a>
-  <a href="professionals.html">Professionals</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+      <img src="gilas.png" alt="Gilas Logo" class="logo" />
+    </a>
+    <a href="get-started.html" class="get-started-btn">Get Started</a>
+    <a href="professionals.html">Professionals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <header>
@@ -207,7 +336,6 @@
     <p>
       <strong>Find your favorite city and job</strong><br>
       <span class="sub-line">Receive instant access to the information you need</span>
-      
     </p>
   </header>
 
@@ -217,23 +345,33 @@
   <div class="overlay" id="countryOverlay"></div>
   <div class="overlay" id="stateOverlay"></div>
   <div class="overlay" id="cityOverlay"></div>
+  <div class="job-categories-overlay" id="jobCategoriesOverlay"></div>
 
   <script>
     const navStack = [];
+    let activeCategory = null;
+
+    const jobCategories = {
+      "Knowledge & Professional Roles": ["Software Engineer", "Data Scientist", "UX/UI Designer", "Product Manager", "Marketing Manager", "Financial Analyst", "Civil Engineer", "Mechanical Engineer", "Registered Nurse (BSN-level)", "Pharmacist"],
+      "Technical & Skilled Trades": ["Electrician", "HVAC Technician", "Automotive Technician", "Welder", "Plumber"],
+      "Healthcare & Allied Health": ["Medical Laboratory Technician", "Physical Therapist", "Occupational Therapist", "Dental Hygienist", "Radiologic Technologist"],
+      "Public Service & Education": ["High School Teacher", "Special Education Teacher", "Police Officer", "Firefighter"],
+      "Creative & Freelance Professions": ["Freelance Writer", "Content Creator / YouTuber", "Graphic Designer", "Copywriter"],
+      "Business & Client-Facing Roles": ["Real Estate Agent", "Insurance Agent"],
+      "Artistic & Expressive Careers": ["Musician / Music Producer", "Painter / Visual Artist", "Film Director / Indie Filmmaker", "Actor / Voice Actor", "Animator / Motion Designer"]
+    };
 
     const countryList = {
-
-        "Africa": ["Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cape Verde", "Cameroon", "Central African Republic", "Chad", "Comoros", "Congo (Brazzaville)", "Congo (Kinshasa / DRC)", "Djibouti", "Egypt", "Equatorial Guinea", "Eritrea", "Eswatini (Swaziland)", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Ivory Coast (Côte d'Ivoire)", "Kenya", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger", "Nigeria", "Rwanda", "São Tomé and Príncipe", "Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa", "South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Zambia", "Zimbabwe"].sort(),
-  "Asia": ["Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia", "China", "Cyprus", "East Timor (Timor-Leste)", "Georgia", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan", "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia", "Myanmar (Burma)", "Nepal", "North Korea", "Oman", "Pakistan", "Palestine", "Philippines", "Qatar", "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "Syria", "Tajikistan", "Thailand", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", "Vietnam", "Yemen"].sort(),
-  "Europe": ["Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Czech Republic (Czechia)", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine", "United Kingdom", "Vatican City"].sort(),
-  "North America": ["Antigua and Barbuda", "Bahamas", "Barbados", "Belize", "Canada", "Costa Rica", "Cuba", "Dominica", "Dominican Republic", "El Salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Nicaragua", "Panama", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Trinidad and Tobago", "United States"].sort(),
-  "South America": ["Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"].sort(),
-  "Australia": ["Australia", "Fiji", "Kiribati", "Marshall Islands", "Micronesia", "Nauru", "New Zealand", "Palau", "Papua New Guinea", "Samoa", "Solomon Islands", "Tonga", "Tuvalu", "Vanuatu"].sort()
-
+      "Africa": ["Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cape Verde", "Cameroon", "Central African Republic", "Chad", "Comoros", "Congo (Brazzaville)", "Congo (Kinshasa / DRC)", "Djibouti", "Egypt", "Equatorial Guinea", "Eritrea", "Eswatini (Swaziland)", "Ethiopia", "Gabon", "Gambia", "Ghana", "Guinea", "Guinea-Bissau", "Ivory Coast (Côte d'Ivoire)", "Kenya", "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius", "Morocco", "Mozambique", "Namibia", "Niger", "Nigeria", "Rwanda", "São Tomé and Príncipe", "Senegal", "Seychelles", "Sierra Leone", "Somalia", "South Africa", "South Sudan", "Sudan", "Tanzania", "Togo", "Tunisia", "Uganda", "Zambia", "Zimbabwe"].sort(),
+      "Asia": ["Afghanistan", "Armenia", "Azerbaijan", "Bahrain", "Bangladesh", "Bhutan", "Brunei", "Cambodia", "China", "Cyprus", "East Timor (Timor-Leste)", "Georgia", "India", "Indonesia", "Iran", "Iraq", "Israel", "Japan", "Jordan", "Kazakhstan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Malaysia", "Maldives", "Mongolia", "Myanmar (Burma)", "Nepal", "North Korea", "Oman", "Pakistan", "Palestine", "Philippines", "Qatar", "Saudi Arabia", "Singapore", "South Korea", "Sri Lanka", "Syria", "Tajikistan", "Thailand", "Turkey", "Turkmenistan", "United Arab Emirates", "Uzbekistan", "Vietnam", "Yemen"].sort(),
+      "Europe": ["Albania", "Andorra", "Austria", "Belarus", "Belgium", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Czech Republic (Czechia)", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Kosovo", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Moldova", "Monaco", "Montenegro", "Netherlands", "North Macedonia", "Norway", "Poland", "Portugal", "Romania", "Russia", "San Marino", "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "Ukraine", "United Kingdom", "Vatican City"].sort(),
+      "North America": ["Antigua and Barbuda", "Bahamas", "Barbados", "Belize", "Canada", "Costa Rica", "Cuba", "Dominica", "Dominican Republic", "El Salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico", "Nicaragua", "Panama", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Trinidad and Tobago", "United States"].sort(),
+      "South America": ["Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"].sort(),
+      "Australia": ["Australia", "Fiji", "Kiribati", "Marshall Islands", "Micronesia", "Nauru", "New Zealand", "Palau", "Papua New Guinea", "Samoa", "Solomon Islands", "Tonga", "Tuvalu", "Vanuatu"].sort()
     };
-    const usStates = {
 
-"Alaska": ["Anchorage"],
+    const usStates = {
+      "Alaska": ["Anchorage"],
       "Alabama": ["Birmingham", "Huntsville", "Mobile", "Montgomery", "Tuscaloosa"],
       "Arkansas": ["Fayetteville", "Little Rock"],
       "Arizona": ["Buckeye", "Chandler", "Gilbert", "Glendale", "Goodyear", "Mesa", "Peoria", "Phoenix", "Scottsdale", "Surprise", "Tempe", "Tucson", "Yuma", "San Tan Valley"],
@@ -284,7 +422,6 @@
       "Wisconsin": ["Green Bay", "Madison", "Milwaukee"],
       "West Virginia": [],
       "Wyoming": []
-
     };
 
     const continents = Object.keys(countryList);
@@ -344,13 +481,92 @@
         const div = document.createElement('div');
         div.className = 'bubble';
         div.textContent = city;
+        div.onclick = () => showJobCategories(city);
         overlay.appendChild(div);
       });
     }
 
+    function showJobCategories(city) {
+      navStack.push('city');
+      document.getElementById('cityOverlay').style.display = 'none';
+      container.classList.add('blurred');
+      
+      const overlay = document.getElementById('jobCategoriesOverlay');
+      overlay.innerHTML = '';
+      overlay.style.display = 'block';
+      
+      // City title
+      const cityTitle = document.createElement('div');
+      cityTitle.className = 'city-title';
+      cityTitle.textContent = `Job Categories in ${city}`;
+      overlay.appendChild(cityTitle);
+      
+      // Create category cards
+      Object.keys(jobCategories).forEach(category => {
+        const categoryCard = document.createElement('div');
+        categoryCard.className = 'category-card';
+        categoryCard.onclick = () => toggleCategory(categoryCard, category);
+        
+        const categoryTitle = document.createElement('h3');
+        categoryTitle.className = 'category-title';
+        categoryTitle.innerHTML = `${category} <span class="category-arrow">▼</span>`;
+        
+        const jobsWaterfall = document.createElement('div');
+        jobsWaterfall.className = 'jobs-waterfall';
+        
+        jobCategories[category].forEach(job => {
+          const jobItem = document.createElement('div');
+          jobItem.className = 'job-item';
+          jobItem.textContent = job;
+          jobsWaterfall.appendChild(jobItem);
+        });
+        
+        categoryCard.appendChild(categoryTitle);
+        categoryCard.appendChild(jobsWaterfall);
+        overlay.appendChild(categoryCard);
+      });
+    }
+
+    function toggleCategory(categoryCard, category) {
+      const jobsWaterfall = categoryCard.querySelector('.jobs-waterfall');
+      const jobItems = jobsWaterfall.querySelectorAll('.job-item');
+      
+      // Close other categories
+      if (activeCategory && activeCategory !== categoryCard) {
+        activeCategory.classList.remove('active');
+        const activeWaterfall = activeCategory.querySelector('.jobs-waterfall');
+        activeWaterfall.classList.remove('active');
+        const activeItems = activeWaterfall.querySelectorAll('.job-item');
+        activeItems.forEach(item => item.classList.remove('show'));
+      }
+      
+      // Toggle current category
+      if (categoryCard.classList.contains('active')) {
+        categoryCard.classList.remove('active');
+        jobsWaterfall.classList.remove('active');
+        jobItems.forEach(item => item.classList.remove('show'));
+        activeCategory = null;
+      } else {
+        categoryCard.classList.add('active');
+        jobsWaterfall.classList.add('active');
+        activeCategory = categoryCard;
+        
+        // Animate job items with staggered delay
+        jobItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('show');
+          }, index * 100);
+        });
+      }
+    }
+
     function goBack() {
       const last = navStack.pop();
-      if (last === 'state') {
+      if (last === 'city') {
+        document.getElementById('jobCategoriesOverlay').style.display = 'none';
+        document.getElementById('cityOverlay').style.display = 'flex';
+        activeCategory = null;
+      } else if (last === 'state') {
         document.getElementById('cityOverlay').style.display = 'none';
         document.getElementById('stateOverlay').style.display = 'flex';
       } else if (last === 'country') {
