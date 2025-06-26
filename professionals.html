@@ -16,14 +16,14 @@
 
     nav {
       background-color: #8B003E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  height: 70px; /* standard fixed height */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      height: 70px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo-link {
@@ -49,13 +49,13 @@
 
     nav a {
       color: white;
-  text-decoration: none;
-  margin: 0 20px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  line-height: 70px; /* matches nav height */
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  border-bottom: 2px solid transparent;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 70px;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
     }
 
     nav a:hover {
@@ -63,29 +63,29 @@
       border-bottom: 2px solid #ffe4ec;
     }
 
-.get-started-btn {
-  padding: 8px 16px;
-  border: 2px solid white;
-  border-radius: 20px;
-  background-color: transparent;
-  line-height: normal;
-  margin: 0 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    .get-started-btn {
+      padding: 8px 16px;
+      border: 2px solid white;
+      border-radius: 20px;
+      background-color: transparent;
+      line-height: normal;
+      margin: 0 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-.get-started-btn:hover {
-  background-color: #ffe4ec;
-  color: #8B003E;
-  border-color: #ffe4ec;
-}
+    .get-started-btn:hover {
+      background-color: #ffe4ec;
+      color: #8B003E;
+      border-color: #ffe4ec;
+    }
 
     header {
-  background: #8B003E;
-  color: white;
-  padding: 60px 20px 40px;
-  text-align: center;
-  animation: fadeIn 1s ease-out;
-}
+      background: #8B003E;
+      color: white;
+      padding: 60px 20px 40px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
 
     header h1 {
       font-size: 2.8rem;
@@ -100,7 +100,7 @@
     }
 
     .form-container {
-      max-width: 700px;
+      max-width: 800px;
       background: white;
       margin: 50px auto;
       padding: 40px 35px;
@@ -112,6 +112,24 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      background: linear-gradient(135deg, #8B003E, #a8004a);
+      color: white;
+      padding: 15px 20px;
+      margin: 30px -35px 25px -35px;
+      border-radius: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-header:first-of-type {
+      margin-top: -10px;
+      border-radius: 14px 14px 0 0;
     }
 
     h2 {
@@ -130,8 +148,13 @@
 
     label {
       display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #2c0e14;
+    }
+
+    .required {
+      color: #d32f2f;
     }
 
     input[type="text"],
@@ -141,52 +164,102 @@
       width: 100%;
       padding: 12px;
       margin-bottom: 18px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
       font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #8B003E;
+      box-shadow: 0 0 0 3px rgba(139, 0, 62, 0.1);
     }
 
     textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 100px;
     }
 
     .radio-group {
       margin-bottom: 20px;
+      display: grid;
+      gap: 8px;
     }
 
     .radio-group label {
       font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .radio-group label:hover {
+      color: #8B003E;
+    }
+
+    .radio-group input[type="radio"] {
+      margin: 0;
+      width: 18px;
+      height: 18px;
+      accent-color: #8B003E;
+    }
+
+    .conditional-field {
+      display: none;
+      margin-top: 10px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-left: 4px solid #8B003E;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .conditional-field.show {
       display: block;
-      margin-bottom: 5px;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; max-height: 0; }
+      to { opacity: 1; max-height: 200px; }
     }
 
     button[type="submit"] {
-      background-color: #8B003E;
+      background: linear-gradient(135deg, #8B003E, #a8004a);
       color: white;
-      padding: 12px 25px;
-      font-size: 1rem;
+      padding: 15px 30px;
+      font-size: 1.1rem;
       font-weight: bold;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       width: 100%;
-      transition: background-color 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
     }
 
     button[type="submit"]:hover {
-      background-color: #700030;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 0, 62, 0.3);
     }
 
     .confidentiality {
-      background: #ffd3dc;
+      background: linear-gradient(135deg, #ffd3dc, #ffe4ec);
       color: #8B003E;
       font-size: 0.9rem;
-      padding: 12px 16px;
+      padding: 20px;
       border-left: 5px solid #8B003E;
       margin-top: 30px;
       border-radius: 8px;
-      line-height: 1.5;
+      line-height: 1.6;
+      box-shadow: 0 2px 10px rgba(139, 0, 62, 0.1);
     }
 
     footer {
@@ -197,9 +270,29 @@
     }
 
     hr {
-      margin: 30px 0;
+      margin: 40px 0;
       border: none;
-      border-top: 1px solid #eee;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .section-note {
+      background: #f8f9fa;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+      border-left: 4px solid #8B003E;
+    }
+
+    optgroup {
+      font-weight: bold;
+      color: #8B003E;
+    }
+
+    option {
+      font-weight: normal;
+      color: #333;
     }
   </style>
 </head>
@@ -218,128 +311,276 @@
   <header>
     <h1>Gilas Contributor Form</h1>
     <p>
-      Thank you for helping others make informed career choices. This quick 4–5 minute form helps Gilas collect real insights from professionals like you. Your identity will remain confidential.
+      Thank you for helping others make informed career choices. This comprehensive form helps Gilas collect detailed insights from professionals like you. Your identity will remain confidential and your contribution will help build a valuable career resource.
     </p>
   </header>
 
   <section class="form-container">
-    <h2>Your Professional Profile</h2>
-    <p class="sub-note">Fields marked with * are required.</p>
+    <h2>Professional Insights Survey</h2>
+    <p class="sub-note">Fields marked with <span class="required">*</span> are required. This form takes approximately 8-10 minutes to complete.</p>
 
     <form action="https://formspree.io/f/myzjbyqv" method="POST">
-      <label for="name">Full Name *</label>
+      
+      <!-- SECTION 1: Identity -->
+      <div class="section-header">
+        🔹 SECTION 1: Identity <span style="font-size: 0.9rem; opacity: 0.8;">(For verification only — never shared)</span>
+      </div>
+
+      <label for="name">Full Name <span class="required">*</span></label>
       <input type="text" id="name" name="name" required />
 
-      <label for="email">Institutional Email *</label>
-      <input type="email" id="email" name="email" required />
+      <label for="email">Institutional or Professional Email <span class="required">*</span></label>
+      <input type="email" id="email" name="email" placeholder="Work or academic email preferred" required />
 
-      <label for="career">Your Current Job Title / Role *</label>
-      <input type="text" id="career" name="career" placeholder="e.g., Software Engineer, Clinical Pharmacist" required />
+      <!-- SECTION 2: Current Position & Location -->
+      <div class="section-header">
+        🔹 SECTION 2: Current Position & Location
+      </div>
 
-      <label for="city">City and Country of Work *</label>
-      <input type="text" id="city" name="city" placeholder="e.g., Tehran, Iran or Boston, USA" required />
+      <label for="job_title">What is your current job title or role? <span class="required">*</span></label>
+      <select id="job_title" name="job_title" required>
+        <option value="">-- Select Your Role --</option>
+        <optgroup label="Knowledge & Professional Roles">
+          <option value="Software Engineer">Software Engineer</option>
+          <option value="Data Scientist">Data Scientist</option>
+          <option value="UX/UI Designer">UX/UI Designer</option>
+          <option value="Product Manager">Product Manager</option>
+          <option value="Marketing Manager">Marketing Manager</option>
+          <option value="Financial Analyst">Financial Analyst</option>
+          <option value="Civil Engineer">Civil Engineer</option>
+          <option value="Mechanical Engineer">Mechanical Engineer</option>
+          <option value="Registered Nurse (BSN-level)">Registered Nurse (BSN-level)</option>
+          <option value="Pharmacist">Pharmacist</option>
+        </optgroup>
+        <optgroup label="Technical & Skilled Trades">
+          <option value="Electrician">Electrician</option>
+          <option value="HVAC Technician">HVAC Technician</option>
+          <option value="Automotive Technician">Automotive Technician</option>
+          <option value="Welder">Welder</option>
+          <option value="Plumber">Plumber</option>
+        </optgroup>
+        <optgroup label="Healthcare & Allied Health">
+          <option value="Medical Laboratory Technician">Medical Laboratory Technician</option>
+          <option value="Physical Therapist">Physical Therapist</option>
+          <option value="Occupational Therapist">Occupational Therapist</option>
+          <option value="Dental Hygienist">Dental Hygienist</option>
+          <option value="Radiologic Technologist">Radiologic Technologist</option>
+        </optgroup>
+        <optgroup label="Public Service & Education">
+          <option value="High School Teacher">High School Teacher</option>
+          <option value="Special Education Teacher">Special Education Teacher</option>
+          <option value="Police Officer">Police Officer</option>
+          <option value="Firefighter">Firefighter</option>
+        </optgroup>
+        <optgroup label="Creative & Freelance Professions">
+          <option value="Freelance Writer">Freelance Writer</option>
+          <option value="Content Creator / YouTuber">Content Creator / YouTuber</option>
+          <option value="Graphic Designer">Graphic Designer</option>
+          <option value="Copywriter">Copywriter</option>
+        </optgroup>
+        <optgroup label="Business & Client-Facing Roles">
+          <option value="Real Estate Agent">Real Estate Agent</option>
+          <option value="Insurance Agent">Insurance Agent</option>
+        </optgroup>
+        <optgroup label="Artistic & Expressive Careers">
+          <option value="Musician / Music Producer">Musician / Music Producer</option>
+          <option value="Painter / Visual Artist">Painter / Visual Artist</option>
+          <option value="Film Director / Indie Filmmaker">Film Director / Indie Filmmaker</option>
+          <option value="Animator / Motion Designer">Animator / Motion Designer</option>
+        </optgroup>
+      </select>
 
-      <label for="education">Highest Level of Education *</label>
-      <select id="education" name="education" required>
+      <label for="location">What city and country are you currently working in? <span class="required">*</span></label>
+      <input type="text" id="location" name="location" placeholder="e.g., Berlin, Germany" required />
+
+      <!-- SECTION 3: Career Path & Requirements -->
+      <div class="section-header">
+        🔹 SECTION 3: Career Path & Requirements
+      </div>
+
+      <label for="min_education">What is the typical minimum education level required to gain this position in your city? <span class="required">*</span></label>
+      <select id="min_education" name="min_education" required>
         <option value="">-- Select --</option>
-        <option value="High School">High School</option>
-        <option value="Associate">Associate Degree</option>
-        <option value="Bachelor">Bachelor's Degree</option>
-        <option value="Master">Master's Degree</option>
-        <option value="PhD/MD/Doctorate">PhD / MD / Other Doctorate</option>
+        <option value="High School Diploma or GED">High School Diploma or GED</option>
+        <option value="Technical/Vocational Certificate">Technical/Vocational Certificate</option>
+        <option value="Associate Degree">Associate Degree</option>
+        <option value="Bachelor's Degree">Bachelor's Degree</option>
+        <option value="Master's Degree">Master's Degree</option>
+        <option value="PhD / MD / Professional Doctorate">PhD / MD / Professional Doctorate</option>
+        <option value="Residency / Fellowship (if applicable)">Residency / Fellowship (if applicable)</option>
+        <option value="Industry Certification">Industry Certification (e.g., PMP, AWS, NCLEX)</option>
+        <option value="No formal education required">No formal education required</option>
         <option value="Other">Other</option>
       </select>
 
-      <label for="university">Last Degree Institution (Optional)</label>
-      <input type="text" id="university" name="university" placeholder="e.g., University of Toronto" />
-
-      <label for="experience">Years of Experience in Your Current Career *</label>
-      <select id="experience" name="experience" required>
+      <label for="common_degree">What is the most common academic field or degree title among people in this position? <span class="required">*</span></label>
+      <select id="common_degree" name="common_degree" required onchange="toggleOtherField('common_degree', 'other_degree_field')">
         <option value="">-- Select --</option>
-        <option value="0-2">0–2 years</option>
-        <option value="3-5">3–5 years</option>
-        <option value="6-10">6–10 years</option>
-        <option value="10+">10+ years</option>
+        <option value="Accounting">Accounting</option>
+        <option value="Aerospace Engineering">Aerospace Engineering</option>
+        <option value="Architecture">Architecture</option>
+        <option value="Biology">Biology</option>
+        <option value="Business Administration">Business Administration</option>
+        <option value="Chemical Engineering">Chemical Engineering</option>
+        <option value="Civil Engineering">Civil Engineering</option>
+        <option value="Communications">Communications</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Criminal Justice">Criminal Justice</option>
+        <option value="Dentistry">Dentistry</option>
+        <option value="Economics">Economics</option>
+        <option value="Education">Education</option>
+        <option value="Electrical Engineering">Electrical Engineering</option>
+        <option value="Graphic Design">Graphic Design</option>
+        <option value="Law">Law</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Mechanical Engineering">Mechanical Engineering</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Music">Music</option>
+        <option value="Nursing">Nursing</option>
+        <option value="Pharmacy">Pharmacy</option>
+        <option value="Philosophy">Philosophy</option>
+        <option value="Physical Therapy">Physical Therapy</option>
+        <option value="Physics">Physics</option>
+        <option value="Political Science">Political Science</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Public Health">Public Health</option>
+        <option value="Social Work">Social Work</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Software Engineering">Software Engineering</option>
+        <option value="Theatre / Film">Theatre / Film</option>
+        <option value="Visual Arts">Visual Arts</option>
+        <option value="Other">Other</option>
       </select>
 
-      <label>Typical Weekly Work Hours *</label>
+      <div id="other_degree_field" class="conditional-field">
+        <label for="other_degree_specify">Please specify the degree field:</label>
+        <input type="text" id="other_degree_specify" name="other_degree_specify" placeholder="Enter the specific degree field" />
+      </div>
+
+      <label for="total_training">How many total years of training and professional work experience are typically needed to gain this position? <span class="required">*</span></label>
+      <input type="text" id="total_training" name="total_training" placeholder="e.g., 4–6 years if starting from scratch" required />
+
+      <label for="experience_to_current">How many additional years of professional experience did it take you (after starting in the field) to reach your current position? <span class="required">*</span></label>
+      <input type="text" id="experience_to_current" name="experience_to_current" placeholder="e.g., 3 years after entry-level" required />
+
+      <label for="career_path">What role(s) or position(s) typically come before your current position? <span class="required">*</span></label>
+      <input type="text" id="career_path" name="career_path" placeholder="e.g., Intern → Junior Analyst → Analyst" required />
+
+      <!-- SECTION 4: Workload, Compensation & Stability -->
+      <div class="section-header">
+        🔹 SECTION 4: Workload, Compensation & Stability
+      </div>
+
+      <label>On average, how many hours per week do you work? <span class="required">*</span></label>
       <div class="radio-group">
         <label><input type="radio" name="hours" value="Less than 30" required /> Less than 30</label>
         <label><input type="radio" name="hours" value="30–40" /> 30–40</label>
         <label><input type="radio" name="hours" value="41–50" /> 41–50</label>
-        <label><input type="radio" name="hours" value="50+" /> Over 50</label>
+        <label><input type="radio" name="hours" value="Over 50" /> Over 50</label>
       </div>
 
-      <label for="notes">Anything You'd Like to Add? (Optional)</label>
-      <textarea id="notes" name="notes" placeholder="e.g., career challenges, lifestyle insights, salary trends..."></textarea>
-
-      <hr>
-      <h2 style="font-size: 1.4rem;">Optional Insights (To Help Us Grow Smarter)</h2>
-      <p class="sub-note">These questions are optional, but your answers help us improve the platform for others.</p>
-
-      <label>Do you work remotely in your current role?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="remote" value="Fully remote" /> Fully remote</label>
-        <label><input type="radio" name="remote" value="Hybrid" /> Hybrid</label>
-        <label><input type="radio" name="remote" value="On-site" /> On-site</label>
-        <label><input type="radio" name="remote" value="Prefer not to say" /> Prefer not to say</label>
-      </div>
-
-      <label for="sector">What general industry are you part of?</label>
-      <select id="sector" name="sector">
+      <label for="salary_range">What is the typical annual income range for your role in your city (USD equivalent)? <span class="required">*</span></label>
+      <select id="salary_range" name="salary_range" required>
         <option value="">-- Select --</option>
-        <option value="Healthcare">Healthcare</option>
-        <option value="Education & Research">Education & Research</option>
-        <option value="Tech & Software">Tech & Software</option>
-        <option value="Engineering & Manufacturing">Engineering & Manufacturing</option>
-        <option value="Finance & Business">Finance & Business</option>
-        <option value="Government & Policy">Government & Policy</option>
-        <option value="Creative & Design">Creative & Design</option>
-        <option value="Other">Other</option>
-      </select>
-
-      <label for="salary">Estimated annual income range (USD)</label>
-      <select id="salary" name="salary">
-        <option value="">-- Select --</option>
-        <option value="<25k">&lt; $25,000</option>
-        <option value="25k–50k">$25,000 – $50,000</option>
-        <option value="50k–75k">$50,000 – $75,000</option>
-        <option value="75k–100k">$75,000 – $100,000</option>
-        <option value="100k–150k">$100,000 – $150,000</option>
-        <option value="150k+">$150,000+</option>
+        <option value="Less than $15,000">Less than $15,000</option>
+        <option value="$15,000 – $24,999">$15,000 – $24,999</option>
+        <option value="$25,000 – $34,999">$25,000 – $34,999</option>
+        <option value="$35,000 – $44,999">$35,000 – $44,999</option>
+        <option value="$45,000 – $59,999">$45,000 – $59,999</option>
+        <option value="$60,000 – $74,999">$60,000 – $74,999</option>
+        <option value="$75,000 – $99,999">$75,000 – $99,999</option>
+        <option value="$100,000 – $124,999">$100,000 – $124,999</option>
+        <option value="$125,000 – $149,999">$125,000 – $149,999</option>
+        <option value="$150,000 – $199,999">$150,000 – $199,999</option>
+        <option value="$200,000 or more">$200,000 or more</option>
         <option value="Prefer not to say">Prefer not to say</option>
       </select>
 
-      <label for="satisfaction">How satisfied are you with your current career?</label>
-      <select id="satisfaction" name="satisfaction">
-        <option value="">-- Select --</option>
-        <option value="Very satisfied">Very satisfied</option>
-        <option value="Somewhat satisfied">Somewhat satisfied</option>
-        <option value="Neutral">Neutral</option>
-        <option value="Somewhat dissatisfied">Somewhat dissatisfied</option>
-        <option value="Very dissatisfied">Very dissatisfied</option>
-      </select>
-
-      <label>Are you considering changing your career path within the next 1–2 years?</label>
+      <label>Is it possible to work remotely in this position without significant decrease in salary or income?</label>
       <div class="radio-group">
-        <label><input type="radio" name="switching" value="Yes" /> Yes</label>
-        <label><input type="radio" name="switching" value="Maybe" /> Maybe</label>
-        <label><input type="radio" name="switching" value="No" /> No</label>
-        <label><input type="radio" name="switching" value="Prefer not to say" /> Prefer not to say</label>
+        <label><input type="radio" name="remote_work" value="Yes" /> Yes</label>
+        <label><input type="radio" name="remote_work" value="Partially / Hybrid" /> Partially / Hybrid</label>
+        <label><input type="radio" name="remote_work" value="No" /> No</label>
+        <label><input type="radio" name="remote_work" value="Not sure" /> Not sure</label>
       </div>
 
-      <button type="submit">Submit</button>
+      <label>How would you describe the job security and stability of this position in your city?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="job_security" value="Very secure and stable" /> Very secure and stable</label>
+        <label><input type="radio" name="job_security" value="Moderately secure" /> Moderately secure</label>
+        <label><input type="radio" name="job_security" value="Unstable or uncertain" /> Unstable or uncertain</label>
+        <label><input type="radio" name="job_security" value="Varies by employer" /> Varies by employer</label>
+        <label><input type="radio" name="job_security" value="Not sure" /> Not sure</label>
+      </div>
+
+      <!-- SECTION 5: Growth & Promotion -->
+      <div class="section-header">
+        🔹 SECTION 5: Growth & Promotion
+      </div>
+
+      <label>Are there realistic opportunities for promotion or upward growth in this position? <span class="required">*</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="promotion_opportunities" value="Yes" required /> Yes</label>
+        <label><input type="radio" name="promotion_opportunities" value="No" /> No</label>
+        <label><input type="radio" name="promotion_opportunities" value="Depends on company or institution" /> Depends on company or institution</label>
+      </div>
+
+      <label for="next_step">What is a realistic next step or promotion from your current role? <span class="required">*</span></label>
+      <input type="text" id="next_step" name="next_step" placeholder="e.g., Project Manager, Principal Designer, Consultant" required />
+
+      <!-- SECTION 6: Optional Insights -->
+      <div class="section-header">
+        🔹 SECTION 6: Optional Insights
+      </div>
+
+      <div class="section-note">
+        The following questions are optional but help us provide richer insights to future professionals.
+      </div>
+
+      <label for="challenges">What is the most challenging part of your position?</label>
+      <textarea id="challenges" name="challenges" placeholder="e.g., responsibility, workload, deadlines, emotional stress, dealing with uncertainty..."></textarea>
+
+      <label for="communication_level">Roughly how much of your work involves direct communication with others (in person or virtual)?</label>
+      <select id="communication_level" name="communication_level">
+        <option value="">-- Select --</option>
+        <option value="Very little (mostly solo/independent work)">Very little (mostly solo/independent work)</option>
+        <option value="Moderate (some collaboration or communication)">Moderate (some collaboration or communication)</option>
+        <option value="Frequent (daily teamwork, meetings, coordination)">Frequent (daily teamwork, meetings, coordination)</option>
+        <option value="Constant (client-facing or communication-heavy role)">Constant (client-facing or communication-heavy role)</option>
+      </select>
+
+      <label for="advice">What is one piece of advice you'd give to someone considering this job in your city?</label>
+      <textarea id="advice" name="advice" placeholder="Share your insights about what someone should know before pursuing this career..."></textarea>
+
+      <button type="submit">Submit Professional Insights</button>
     </form>
 
     <div class="confidentiality">
       🔒 <strong>Privacy First:</strong><br>
-      Your responses will be used only to create aggregated, anonymous insights. We never display your name, email, or any identifying detail publicly. Your contribution is secure and deeply valued.
+      Your responses will be used only to create aggregated, anonymous insights that help others make informed career decisions. We never display your name, email, or any identifying details publicly. Your contribution is secure, confidential, and deeply valued by the community.
     </div>
   </section>
 
   <footer>
     &copy; 2025 Gilas. All rights reserved.
   </footer>
+
+  <script>
+    function toggleOtherField(selectId, fieldId) {
+      const select = document.getElementById(selectId);
+      const field = document.getElementById(fieldId);
+      
+      if (select.value === 'Other') {
+        field.classList.add('show');
+        field.querySelector('input').required = true;
+      } else {
+        field.classList.remove('show');
+        field.querySelector('input').required = false;
+        field.querySelector('input').value = '';
+      }
+    }
+  </script>
 
 </body>
 </html>
