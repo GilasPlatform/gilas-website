@@ -671,7 +671,13 @@
                 overlay.style.alignItems = 'center';
 
                 // Clear existing bubbles and display message
-                overlay.innerHTML = `<div class="unsupported-message">Thank you for your interest in Gilas. We are working on expanding support for <b>${data.country}</b>. We appreciate your patience.</div>`;
+                overlay.innerHTML = `
+                    <div class="unsupported-message">
+                        Thank you for your interest in Gilas.<br>
+                        We are working on expanding support for <b>${data.country}</b>.<br>
+                        We appreciate your patience.
+                    </div>
+                `;
 
                 // Show back button
                 backButton.style.display = 'block';
