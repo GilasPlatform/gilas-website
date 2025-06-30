@@ -164,7 +164,7 @@
       z-index: 999;
       display: none;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; /* Changed to flex-start to prevent bottom collision */
       flex-wrap: wrap;
       padding: 50px 20px; /* Default padding for overlays */
       overflow-y: auto;
@@ -388,7 +388,8 @@
       /* Overlays */
       .overlay, .job-categories-overlay {
         /* Increased top padding to account for fixed back button and clear space */
-        padding: 100px 10px 20px;
+        padding: 100px 10px 40px; /* Increased bottom padding to 40px */
+        align-items: flex-start; /* Ensure content starts from top */
       }
 
       .city-title {
@@ -443,7 +444,7 @@
       /* Overlays for very small screens */
       .overlay, .job-categories-overlay {
         /* Further increased top padding for very small screens */
-        padding: 90px 5px 10px;
+        padding: 90px 5px 30px; /* Increased bottom padding to 30px */
       }
     }
   </style>
@@ -478,7 +479,7 @@
   <script>
     // navStack will now store objects representing the state of the page
     // { type: 'pageType', data: 'relevantData' }
-    // 'pageType' can be 'continent', 'country', 'state', 'city', 'jobCategories'
+    // 'pageType' can be 'continent', 'country', 'state', 'city', 'jobCategories', 'unsupportedCountry'
     // 'data' will be the argument needed to re-render that page (e.g., continent name, state name, city name)
     let navStack = [];
     let activeCategory = null; // Used for job category accordion
@@ -556,7 +557,8 @@
       "Wyoming": []
     };
 
-    const continents = Object.keys(countryList);
+    // Sort continents alphabetically
+    const continents = Object.keys(countryList).sort();
     const container = document.getElementById('continentContainer');
     const backButton = document.querySelector('.back-button');
 
@@ -578,8 +580,7 @@
                 // Hide back button
                 backButton.style.display = 'none';
 
-                // Re-create continent bubbles if they were cleared (though they aren't by default)
-                // This ensures the initial view is always correctly rendered on back navigation
+                // Re-create continent bubbles
                 createBubbles(continents, (continent) => {
                     navigateTo({ type: 'country', data: continent });
                 }, container);
@@ -609,10 +610,32 @@
                     if (country === 'United States') {
                         navigateTo({ type: 'state', data: 'United States' }); // Data is 'United States' for states page
                     } else {
-                        // Display message for unsupported countries
-                        overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${country}</b>. We appreciate your patience.</div>`;
+                        // For unsupported countries, navigate to a specific message state
+                        navigateTo({ type: 'unsupportedCountry', data: { continent: continent, country: country } });
                     }
                 }, overlay);
+            }
+        },
+        'unsupportedCountry': {
+            overlayId: 'countryOverlay', // Use the same overlay as countries
+            render: (data) => {
+                // Hide all other overlays
+                document.getElementById('continentContainer').style.display = 'none';
+                document.getElementById('stateOverlay').style.display = 'none';
+                document.getElementById('cityOverlay').style.display = 'none';
+                document.getElementById('jobCategoriesOverlay').style.display = 'none';
+
+                // Show and blur main container
+                container.classList.add('blurred');
+
+                // Show the country overlay and display the message
+                const overlay = document.getElementById('countryOverlay');
+                overlay.style.display = 'flex';
+                // Clear existing bubbles and display message
+                overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${data.country}</b>. We appreciate your patience.</div>`;
+
+                // Show back button
+                backButton.style.display = 'block';
             }
         },
         'state': {
