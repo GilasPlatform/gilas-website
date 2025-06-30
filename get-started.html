@@ -476,8 +476,12 @@
   <div class="job-categories-overlay" id="jobCategoriesOverlay"></div>
 
   <script>
-    const navStack = [];
-    let activeCategory = null;
+    // navStack will now store objects representing the state of the page
+    // { type: 'pageType', data: 'relevantData' }
+    // 'pageType' can be 'continent', 'country', 'state', 'city', 'jobCategories'
+    // 'data' will be the argument needed to re-render that page (e.g., continent name, state name, city name)
+    let navStack = [];
+    let activeCategory = null; // Used for job category accordion
 
     const jobCategories = {
       "Knowledge & Professional Roles": ["Software Engineer", "Data Scientist", "UX/UI Designer", "Product Manager", "Marketing Manager", "Financial Analyst", "Civil Engineer", "Mechanical Engineer", "Registered Nurse (BSN-level)", "Pharmacist"],
@@ -554,10 +558,175 @@
 
     const continents = Object.keys(countryList);
     const container = document.getElementById('continentContainer');
+    const backButton = document.querySelector('.back-button');
 
-    // Function to create and append bubbles
+    // Define a map of page types to their respective overlay IDs and rendering functions.
+    const pageConfigs = {
+        'continent': {
+            overlayId: 'continentContainer', // This is the main container
+            render: () => {
+                // Hide all overlays
+                document.getElementById('countryOverlay').style.display = 'none';
+                document.getElementById('stateOverlay').style.display = 'none';
+                document.getElementById('cityOverlay').style.display = 'none';
+                document.getElementById('jobCategoriesOverlay').style.display = 'none';
+
+                // Ensure main container is visible and not blurred
+                container.classList.remove('blurred');
+                container.style.display = 'flex'; // Ensure it's displayed as flex for bubbles
+
+                // Hide back button
+                backButton.style.display = 'none';
+
+                // Re-create continent bubbles if they were cleared (though they aren't by default)
+                // This ensures the initial view is always correctly rendered on back navigation
+                createBubbles(continents, (continent) => {
+                    navigateTo({ type: 'country', data: continent });
+                }, container);
+            }
+        },
+        'country': {
+            overlayId: 'countryOverlay',
+            render: (continent) => {
+                // Hide other main sections/overlays
+                document.getElementById('continentContainer').style.display = 'none';
+                document.getElementById('stateOverlay').style.display = 'none';
+                document.getElementById('cityOverlay').style.display = 'none';
+                document.getElementById('jobCategoriesOverlay').style.display = 'none';
+
+                // Show and blur main container
+                container.classList.add('blurred');
+
+                // Show current overlay
+                const overlay = document.getElementById('countryOverlay');
+                overlay.style.display = 'flex';
+
+                // Show back button
+                backButton.style.display = 'block';
+
+                // Populate bubbles
+                createBubbles(countryList[continent], (country) => {
+                    if (country === 'United States') {
+                        navigateTo({ type: 'state', data: 'United States' }); // Data is 'United States' for states page
+                    } else {
+                        // Display message for unsupported countries
+                        overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${country}</b>. We appreciate your patience.</div>`;
+                    }
+                }, overlay);
+            }
+        },
+        'state': {
+            overlayId: 'stateOverlay',
+            render: (country) => { // 'country' here would be 'United States'
+                // Hide other main sections/overlays
+                document.getElementById('continentContainer').style.display = 'none';
+                document.getElementById('countryOverlay').style.display = 'none';
+                document.getElementById('cityOverlay').style.display = 'none';
+                document.getElementById('jobCategoriesOverlay').style.display = 'none';
+
+                // Show and blur main container
+                container.classList.add('blurred');
+
+                // Show current overlay
+                const overlay = document.getElementById('stateOverlay');
+                overlay.style.display = 'flex';
+
+                // Show back button
+                backButton.style.display = 'block';
+
+                // Populate bubbles
+                createBubbles(Object.keys(usStates).sort(), (state) => {
+                    navigateTo({ type: 'city', data: state });
+                }, overlay);
+            }
+        },
+        'city': {
+            overlayId: 'cityOverlay',
+            render: (state) => {
+                // Hide other main sections/overlays
+                document.getElementById('continentContainer').style.display = 'none';
+                document.getElementById('countryOverlay').style.display = 'none';
+                document.getElementById('stateOverlay').style.display = 'none';
+                document.getElementById('jobCategoriesOverlay').style.display = 'none';
+
+                // Show and blur main container
+                container.classList.add('blurred');
+
+                // Show current overlay
+                const overlay = document.getElementById('cityOverlay');
+                overlay.style.display = 'flex';
+
+                // Show back button
+                backButton.style.display = 'block';
+
+                // Populate bubbles
+                createBubbles(usStates[state].sort(), (city) => {
+                    navigateTo({ type: 'jobCategories', data: city });
+                }, overlay);
+            }
+        },
+        'jobCategories': {
+            overlayId: 'jobCategoriesOverlay',
+            render: (city) => {
+                // Hide other main sections/overlays
+                document.getElementById('continentContainer').style.display = 'none';
+                document.getElementById('countryOverlay').style.display = 'none';
+                document.getElementById('stateOverlay').style.display = 'none';
+                document.getElementById('cityOverlay').style.display = 'none';
+
+                // Show and blur main container
+                container.classList.add('blurred');
+
+                // Show current overlay
+                const overlay = document.getElementById('jobCategoriesOverlay');
+                overlay.innerHTML = ''; // Clear existing content for job categories
+                overlay.style.display = 'block'; // Use block for job categories overlay
+
+                // Show back button
+                backButton.style.display = 'block';
+
+                // City title
+                const cityTitle = document.createElement('div');
+                cityTitle.className = 'city-title';
+                cityTitle.textContent = `Job Categories in ${city}`;
+                overlay.appendChild(cityTitle);
+
+                // Create category cards
+                Object.keys(jobCategories).forEach(category => {
+                    const categoryCard = document.createElement('div');
+                    categoryCard.className = 'category-card';
+                    categoryCard.onclick = () => toggleCategory(categoryCard, category);
+
+                    const categoryTitle = document.createElement('h3');
+                    categoryTitle.className = 'category-title';
+                    categoryTitle.innerHTML = `${category} <span class="category-arrow">▼</span>`;
+
+                    const jobsWaterfall = document.createElement('div');
+                    jobsWaterfall.className = 'jobs-waterfall';
+
+                    jobCategories[category].forEach(job => {
+                        const jobItem = document.createElement('div');
+                        jobItem.className = 'job-item';
+                        jobItem.textContent = job;
+                        jobsWaterfall.appendChild(jobItem);
+                    });
+
+                    categoryCard.appendChild(categoryTitle);
+                    categoryCard.appendChild(jobsWaterfall);
+                    overlay.appendChild(categoryCard);
+                });
+            }
+        }
+    };
+
+    // Initial population of continent bubbles
+    // This is the starting point, so we explicitly render it.
+    // No need to push to navStack initially as there's nothing to go back to.
+    pageConfigs['continent'].render();
+
+    // Function to create and append bubbles (reused by pageConfigs)
     function createBubbles(items, onClickHandler, parentElement) {
-      parentElement.innerHTML = ''; // Clear existing content
+      parentElement.innerHTML = ''; // Clear existing content before populating
       items.forEach(item => {
         const div = document.createElement('div');
         div.className = 'bubble';
@@ -567,85 +736,15 @@
       });
     }
 
-    // Initial population of continent bubbles
-    createBubbles(continents, showCountries, container);
-
-    function showCountries(continent) {
-      navStack.push('continent');
-      container.classList.add('blurred');
-      const overlay = document.getElementById('countryOverlay');
-      overlay.style.display = 'flex';
-      document.querySelector('.back-button').style.display = 'block';
-
-      createBubbles(countryList[continent], (country) => {
-        if (country === 'United States') {
-          showStates();
-        } else {
-          // Display message for unsupported countries
-          overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${country}</b>. We appreciate your patience.</div>`;
-        }
-      }, overlay);
+    // Centralized navigation function
+    function navigateTo(pageState) {
+        // Push the new state onto the stack
+        navStack.push(pageState);
+        // Render the new page
+        pageConfigs[pageState.type].render(pageState.data);
     }
 
-    function showStates() {
-      navStack.push('country');
-      document.getElementById('countryOverlay').style.display = 'none';
-      const overlay = document.getElementById('stateOverlay');
-      overlay.style.display = 'flex';
-
-      createBubbles(Object.keys(usStates).sort(), showCities, overlay);
-    }
-
-    function showCities(state) {
-      navStack.push('state');
-      document.getElementById('stateOverlay').style.display = 'none';
-      const overlay = document.getElementById('cityOverlay');
-      overlay.style.display = 'flex';
-
-      createBubbles(usStates[state].sort(), showJobCategories, overlay);
-    }
-
-    function showJobCategories(city) {
-      navStack.push('city');
-      document.getElementById('cityOverlay').style.display = 'none';
-      container.classList.add('blurred');
-
-      const overlay = document.getElementById('jobCategoriesOverlay');
-      overlay.innerHTML = '';
-      overlay.style.display = 'block';
-
-      // City title
-      const cityTitle = document.createElement('div');
-      cityTitle.className = 'city-title';
-      cityTitle.textContent = `Job Categories in ${city}`;
-      overlay.appendChild(cityTitle);
-
-      // Create category cards
-      Object.keys(jobCategories).forEach(category => {
-        const categoryCard = document.createElement('div');
-        categoryCard.className = 'category-card';
-        categoryCard.onclick = () => toggleCategory(categoryCard, category);
-
-        const categoryTitle = document.createElement('h3');
-        categoryTitle.className = 'category-title';
-        categoryTitle.innerHTML = `${category} <span class="category-arrow">▼</span>`;
-
-        const jobsWaterfall = document.createElement('div');
-        jobsWaterfall.className = 'jobs-waterfall';
-
-        jobCategories[category].forEach(job => {
-          const jobItem = document.createElement('div');
-          jobItem.className = 'job-item';
-          jobItem.textContent = job;
-          jobsWaterfall.appendChild(jobItem);
-        });
-
-        categoryCard.appendChild(categoryTitle);
-        categoryCard.appendChild(jobsWaterfall);
-        overlay.appendChild(categoryCard);
-      });
-    }
-
+    // Function to handle toggling job categories (accordion)
     function toggleCategory(categoryCard, category) {
       const jobsWaterfall = categoryCard.querySelector('.jobs-waterfall');
       const jobItems = jobsWaterfall.querySelectorAll('.job-item');
@@ -679,23 +778,22 @@
       }
     }
 
+    // Function to handle back navigation
     function goBack() {
-      const last = navStack.pop();
-      if (last === 'city') {
-        document.getElementById('jobCategoriesOverlay').style.display = 'none';
-        document.getElementById('cityOverlay').style.display = 'flex';
-        activeCategory = null;
-      } else if (last === 'state') {
-        document.getElementById('cityOverlay').style.display = 'none';
-        document.getElementById('stateOverlay').style.display = 'flex';
-      } else if (last === 'country') {
-        document.getElementById('stateOverlay').style.display = 'none';
-        document.getElementById('countryOverlay').style.display = 'flex';
-      } else if (last === 'continent') {
-        document.getElementById('countryOverlay').style.display = 'none';
-        container.classList.remove('blurred');
-        document.querySelector('.back-button').style.display = 'none';
+      if (navStack.length > 0) {
+        navStack.pop(); // Remove the current page's state from the stack
+
+        if (navStack.length > 0) {
+          // If there's a previous state, render it
+          const previousState = navStack[navStack.length - 1];
+          pageConfigs[previousState.type].render(previousState.data);
+        } else {
+          // If stack is empty, go back to the initial continent view
+          pageConfigs['continent'].render();
+        }
       }
+      // The visibility of the back button is handled within pageConfigs.render()
+      // for each page type, ensuring it's hidden only on the continent view.
     }
   </script>
 </body>
