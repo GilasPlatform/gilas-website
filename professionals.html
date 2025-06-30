@@ -2,88 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gilas Contributor Form</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    /* Base styles for body and typography */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff1f4;
       color: #2c0e14;
-      overflow-x: hidden;
-      line-height: 1.5;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      padding-bottom: 50px;
     }
 
+    /* Navigation Bar */
     nav {
       background-color: #8B003E;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 10px;
-      min-height: 70px;
-      position: sticky;
+      padding: 0;
+      height: 70px;
+      position: sticky; /* Default: sticky for large screens */
       top: 0;
       z-index: 1000;
-      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     }
 
     .logo-link {
       position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
+      left: 20px;
+      top: 10px;
       display: flex;
       align-items: center;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      z-index: 1001;
     }
 
     .logo-link:hover {
-      transform: translateY(-50%) scale(1.05) rotate(-1deg);
+      transform: scale(1.05) rotate(-1deg);
       opacity: 0.9;
     }
 
     .logo {
-      height: 40px;
+      height: 45px;
       width: auto;
       border-radius: 6px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-left: auto;
-      padding-right: 10px;
-    }
-
-    nav a:not(.logo-link) {
+    nav a {
       color: white;
       text-decoration: none;
-      font-size: 1rem;
+      margin: 0 20px;
+      font-size: 1.1rem;
       font-weight: 500;
-      padding: 8px 12px;
-      transition: color 0.3s ease, background-color 0.3s ease;
-      border-radius: 4px;
-      white-space: nowrap;
+      line-height: 70px;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
     }
 
-    nav a:hover:not(.logo-link) {
+    nav a:hover {
       color: #ffe4ec;
-      background-color: rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid #ffe4ec;
     }
 
     .get-started-btn {
+      padding: 8px 16px;
       border: 2px solid white;
       border-radius: 20px;
       background-color: transparent;
+      line-height: normal;
+      margin: 0 20px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -93,54 +83,58 @@
       border-color: #ffe4ec;
     }
 
+    /* Header Section */
     header {
       background: #8B003E;
       color: white;
-      padding: 40px 20px 30px;
+      padding: 60px 20px 40px;
       text-align: center;
       animation: fadeIn 1s ease-out;
     }
 
     header h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-size: 2.8rem;
       margin-bottom: 10px;
-      line-height: 1.2;
     }
 
     header p {
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-size: 1.1rem;
       margin: 0 auto;
       max-width: 720px;
       line-height: 1.6;
     }
 
+    /* Form Container */
     .form-container {
       max-width: 800px;
       background: white;
-      margin: 30px 15px;
-      padding: 30px 20px;
+      margin: 50px auto;
+      padding: 40px 35px;
       border-radius: 14px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       animation: fadeIn 1s ease-in-out;
+      box-sizing: border-box; /* Include padding in width */
     }
 
+    /* Keyframe for general fade-in */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Section Headers within Form */
     .section-header {
       background: linear-gradient(135deg, #8B003E, #a8004a);
       color: white;
-      padding: 12px 15px;
-      margin: 25px -20px 20px -20px;
+      padding: 15px 20px;
+      /* Adjust negative margins for mobile responsiveness */
+      margin: 30px -35px 25px -35px;
       border-radius: 0;
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-size: 1.2rem;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .section-header:first-of-type {
@@ -148,65 +142,46 @@
       border-radius: 14px 14px 0 0;
     }
 
-    .section-header span {
-      font-size: 0.8rem;
-      opacity: 0.8;
-      display: block;
-      margin-top: 2px;
-    }
-
+    /* Main Form Title and Sub-note */
     h2 {
       text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: 2rem;
       color: #8B003E;
       margin-bottom: 10px;
     }
 
     .sub-note {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #444;
       text-align: center;
-      margin-bottom: 25px;
-      line-height: 1.5;
+      margin-bottom: 30px;
     }
 
+    /* Form Labels */
     label {
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
       color: #2c0e14;
-      font-size: 0.95rem;
-      line-height: 1.4;
     }
 
     .required {
       color: #d32f2f;
     }
 
+    /* Form Input Fields */
     input[type="text"],
     input[type="email"],
     select,
     textarea {
       width: 100%;
-      padding: 14px 12px;
+      padding: 12px;
       margin-bottom: 18px;
       border: 2px solid #e0e0e0;
       border-radius: 8px;
-      font-size: 16px; /* Prevents zoom on iOS */
+      font-size: 1rem;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      box-sizing: border-box;
-      background-color: white;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-    }
-
-    select {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-      background-position: right 12px center;
-      background-repeat: no-repeat;
-      background-size: 16px;
-      padding-right: 40px;
+      box-sizing: border-box; /* Include padding in width */
     }
 
     input[type="text"]:focus,
@@ -221,50 +196,37 @@
     textarea {
       resize: vertical;
       min-height: 100px;
-      font-family: inherit;
     }
 
+    /* Radio Button Group */
     .radio-group {
       margin-bottom: 20px;
       display: grid;
-      gap: 12px;
+      gap: 8px;
     }
 
     .radio-group label {
       font-weight: normal;
       display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      background-color: white;
-      min-height: 44px; /* Touch target size */
+      transition: color 0.3s ease;
     }
 
     .radio-group label:hover {
-      background-color: #f8f9fa;
-      border-color: #8B003E;
       color: #8B003E;
     }
 
     .radio-group input[type="radio"] {
       margin: 0;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       accent-color: #8B003E;
-      flex-shrink: 0;
-      margin-top: 2px;
     }
 
-    .radio-group label:has(input:checked) {
-      background-color: rgba(139, 0, 62, 0.05);
-      border-color: #8B003E;
-      color: #8B003E;
-    }
-
+    /* Conditional Field (e.g., "Other" specify) */
     .conditional-field {
       display: none;
       margin-top: 10px;
@@ -281,13 +243,14 @@
 
     @keyframes slideDown {
       from { opacity: 0; max-height: 0; }
-      to { opacity: 1; max-height: 200px; }
+      to { opacity: 1; max-height: 200px; } /* Max-height for smooth animation */
     }
 
+    /* Submit Button */
     button[type="submit"] {
       background: linear-gradient(135deg, #8B003E, #a8004a);
       color: white;
-      padding: 16px 30px;
+      padding: 15px 30px;
       font-size: 1.1rem;
       font-weight: bold;
       border: none;
@@ -296,7 +259,6 @@
       width: 100%;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-top: 20px;
-      min-height: 50px; /* Touch target size */
     }
 
     button[type="submit"]:hover {
@@ -304,22 +266,20 @@
       box-shadow: 0 6px 20px rgba(139, 0, 62, 0.3);
     }
 
-    button[type="submit"]:active {
-      transform: translateY(0);
-    }
-
+    /* Confidentiality Note */
     .confidentiality {
       background: linear-gradient(135deg, #ffd3dc, #ffe4ec);
       color: #8B003E;
       font-size: 0.9rem;
-      padding: 18px;
+      padding: 20px;
       border-left: 5px solid #8B003E;
-      margin-top: 25px;
+      margin-top: 30px;
       border-radius: 8px;
       line-height: 1.6;
       box-shadow: 0 2px 10px rgba(139, 0, 62, 0.1);
     }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -327,12 +287,14 @@
       color: #555;
     }
 
+    /* Horizontal Rule */
     hr {
       margin: 40px 0;
       border: none;
       border-top: 2px solid #f0f0f0;
     }
 
+    /* Section Note (optional insights) */
     .section-note {
       background: #f8f9fa;
       padding: 12px 16px;
@@ -341,9 +303,9 @@
       color: #666;
       margin-bottom: 20px;
       border-left: 4px solid #8B003E;
-      line-height: 1.5;
     }
 
+    /* Optgroup and Option styling */
     optgroup {
       font-weight: bold;
       color: #8B003E;
@@ -352,174 +314,184 @@
     option {
       font-weight: normal;
       color: #333;
-      padding: 8px;
     }
 
-    /* Mobile-specific optimizations */
+    /* Responsive Adjustments for Small Screens */
     @media (max-width: 768px) {
+      /* Navigation Bar */
       nav {
-        padding: 8px 10px;
-        min-height: 60px;
-      }
-
-      .logo {
-        height: 35px;
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+        position: relative; /* Make nav scrollable on small screens */
+        top: auto;
+        z-index: auto;
       }
 
       .logo-link {
-        left: 10px;
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 10px;
       }
 
-      .nav-links {
-        gap: 2px;
-        padding-right: 5px;
+      nav a {
+        margin: 5px 10px; /* Reduce margin for links */
+        font-size: 1rem;
+        line-height: normal;
+        padding: 5px 0;
       }
 
-      nav a:not(.logo-link) {
-        font-size: 0.9rem;
-        padding: 6px 8px;
+      .get-started-btn {
+        margin: 10px auto; /* Center button */
       }
 
+      /* Header */
       header {
-        padding: 25px 15px 20px;
+        padding: 40px 15px; /* Adjust header padding */
+      }
+
+      header h1 {
+        font-size: 2.2rem; /* Smaller font size for mobile */
+      }
+
+      header p {
+        font-size: 1rem; /* Smaller font size for mobile */
+      }
+
+      /* Form Container */
+      .form-container {
+        margin: 30px 15px; /* Adjust margin for mobile to prevent collision with edges */
+        padding: 25px 20px; /* Adjust padding */
+      }
+
+      h2 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+      }
+
+      .sub-note {
+        font-size: 0.85rem; /* Smaller font size */
+        margin-bottom: 20px;
+      }
+
+      /* Section Headers within Form */
+      .section-header {
+        margin: 25px -20px 20px -20px; /* Adjust negative margins to fit new container padding */
+        font-size: 1.1rem;
+        padding: 12px 15px;
+      }
+
+      /* Form Labels */
+      label {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+      }
+
+      /* Form Input Fields */
+      input[type="text"],
+      input[type="email"],
+      select,
+      textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      textarea {
+        min-height: 80px; /* Slightly smaller textarea */
+      }
+
+      /* Radio Button Group */
+      .radio-group label {
+        font-size: 0.95rem;
+        padding: 6px 0;
+      }
+
+      .radio-group input[type="radio"] {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Conditional Field */
+      .conditional-field {
+        padding: 10px;
+      }
+
+      /* Submit Button */
+      button[type="submit"] {
+        padding: 12px 20px;
+        font-size: 1rem;
+      }
+
+      /* Confidentiality Note */
+      .confidentiality {
+        font-size: 0.85rem;
+        padding: 15px;
+      }
+
+      /* Footer */
+      footer {
+        padding: 15px;
+        font-size: 0.8rem;
+      }
+
+      hr {
+        margin: 30px 0;
+      }
+
+      .section-note {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        margin-bottom: 15px;
+      }
+    }
+
+    /* Further adjustments for very small screens (e.g., iPhone SE) */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 0.9rem;
       }
 
       .form-container {
         margin: 20px 10px;
-        padding: 25px 15px;
-        border-radius: 12px;
+        padding: 20px 15px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
       }
 
       .section-header {
-        margin: 20px -15px 18px -15px;
-        padding: 10px 12px;
+        margin: 20px -15px 15px -15px; /* Adjust negative margins for very small screens */
         font-size: 1rem;
+        padding: 10px 12px;
       }
 
-      .section-header:first-of-type {
-        border-radius: 12px 12px 0 0;
+      label {
+        font-size: 0.9rem;
       }
 
-      .radio-group {
-        gap: 8px;
+      input[type="text"],
+      input[type="email"],
+      select,
+      textarea {
+        padding: 8px;
+        font-size: 0.9rem;
       }
 
       .radio-group label {
-        padding: 10px;
-        gap: 10px;
-      }
-
-      input[type="text"],
-      input[type="email"],
-      select,
-      textarea {
-        padding: 12px 10px;
-        font-size: 16px; /* Prevents zoom on mobile */
-      }
-
-      select {
-        background-position: right 10px center;
-        padding-right: 35px;
+        font-size: 0.9rem;
       }
 
       button[type="submit"] {
-        padding: 14px 20px;
-        font-size: 1rem;
+        padding: 10px 15px;
+        font-size: 0.9rem;
       }
 
       .confidentiality {
-        padding: 15px;
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-links {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 4px;
-      }
-
-      nav a:not(.logo-link) {
-        font-size: 0.85rem;
-        padding: 4px 6px;
-      }
-
-      .form-container {
-        margin: 15px 8px;
-        padding: 20px 12px;
-      }
-
-      .section-header {
-        margin: 18px -12px 15px -12px;
-        padding: 8px 10px;
-        font-size: 0.95rem;
-      }
-
-      .section-header span {
-        font-size: 0.75rem;
-      }
-
-      input[type="text"],
-      input[type="email"],
-      select,
-      textarea {
-        padding: 10px 8px;
-      }
-
-      select {
-        background-position: right 8px center;
-        padding-right: 30px;
-      }
-    }
-
-    /* Landscape mobile optimization */
-    @media (max-height: 500px) and (orientation: landscape) {
-      header {
-        padding: 15px 20px 10px;
-      }
-
-      .form-container {
-        margin: 15px auto;
-      }
-    }
-
-    /* High DPI display optimization */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .logo {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-      }
-    }
-
-    /* Focus indicators for accessibility */
-    *:focus {
-      outline: 2px solid #8B003E;
-      outline-offset: 2px;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus,
-    button:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(139, 0, 62, 0.3);
-    }
-
-    /* Prevent horizontal scroll on very small screens */
-    @media (max-width: 320px) {
-      body {
-        min-width: 320px;
-      }
-      
-      .form-container {
-        margin: 10px 5px;
-        padding: 15px 8px;
-      }
-      
-      .section-header {
-        margin: 15px -8px 12px -8px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -530,12 +502,10 @@
     <a href="index.html" class="logo-link">
       <img src="gilas.png" alt="Gilas Logo" class="logo" />
     </a>
-    <div class="nav-links">
-      <a href="get-started.html" class="get-started-btn">Get Started</a>
-      <a href="professionals.html">Professionals</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
+    <a href="get-started.html" class="get-started-btn">Get Started</a>
+    <a href="professionals.html">Professionals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <header>
@@ -550,10 +520,10 @@
     <p class="sub-note">Fields marked with <span class="required">*</span> are required. This form takes approximately 8-10 minutes to complete.</p>
 
     <form action="https://formspree.io/f/myzjbyqv" method="POST">
-      
+
       <!-- SECTION 1: Identity -->
       <div class="section-header">
-        🔹 SECTION 1: Identity <span>(For verification only — never shared)</span>
+        🔹 SECTION 1: Identity <span style="font-size: 0.9rem; opacity: 0.8;">(For verification only — never shared)</span>
       </div>
 
       <label for="name">Full Name <span class="required">*</span></label>
@@ -760,4 +730,57 @@
       <input type="text" id="next_step" name="next_step" placeholder="e.g., Project Manager, Principal Designer, Consultant" required />
 
       <!-- SECTION 6: Optional Insights -->
-      <div
+      <div class="section-header">
+        🔹 SECTION 6: Optional Insights
+      </div>
+
+      <div class="section-note">
+        The following questions are optional but help us provide richer insights to future professionals.
+      </div>
+
+      <label for="challenges">What is the most challenging part of your position?</label>
+      <textarea id="challenges" name="challenges" placeholder="e.g., responsibility, workload, deadlines, emotional stress, dealing with uncertainty..."></textarea>
+
+      <label for="communication_level">Roughly how much of your work involves direct communication with others (in person or virtual)?</label>
+      <select id="communication_level" name="communication_level">
+        <option value="">-- Select --</option>
+        <option value="Very little (mostly solo/independent work)">Very little (mostly solo/independent work)</option>
+        <option value="Moderate (some collaboration or communication)">Moderate (some collaboration or communication)</option>
+        <option value="Frequent (daily teamwork, meetings, coordination)">Frequent (daily teamwork, meetings, coordination)</option>
+        <option value="Constant (client-facing or communication-heavy role)">Constant (client-facing or communication-heavy role)</option>
+      </select>
+
+      <label for="advice">What is one piece of advice you'd give to someone considering this job in your city?</label>
+      <textarea id="advice" name="advice" placeholder="Share your insights about what someone should know before pursuing this career..."></textarea>
+
+      <button type="submit">Submit Professional Insights</button>
+    </form>
+
+    <div class="confidentiality">
+      🔒 <strong>Privacy First:</strong><br>
+      Your responses will be used only to create aggregated, anonymous insights that help others make informed career decisions. We never display your name, email, or any identifying details publicly. Your contribution is secure, confidential, and deeply valued by the community.
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Gilas. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleOtherField(selectId, fieldId) {
+      const select = document.getElementById(selectId);
+      const field = document.getElementById(fieldId);
+
+      if (select.value === 'Other') {
+        field.classList.add('show');
+        field.querySelector('input').required = true;
+      } else {
+        field.classList.remove('show');
+        field.querySelector('input').required = false;
+        field.querySelector('input').value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
