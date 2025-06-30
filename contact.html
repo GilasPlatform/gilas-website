@@ -6,6 +6,7 @@
   <title>Contact | Gilas</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
+    /* CSS Variables for consistent theming */
     :root {
       --bg-color: #fff1f4;
       --primary-color: #8B003E;
@@ -15,46 +16,49 @@
       --light-grey: #f9f9f9;
     }
 
+    /* Universal box-sizing for consistent layout */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    /* Base styles for body and typography */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
       scroll-behavior: smooth;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      padding-bottom: 50px; /* Consistent bottom padding */
     }
 
+    /* Navigation Bar */
     nav {
-      background-color: #8B003E;
+      background-color: var(--primary-color);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 20px;
-      height: 70px;
-      position: sticky;
+      padding: 0;
+      height: 70px; /* standard fixed height */
+      position: sticky; /* Default: sticky for large screens */
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     }
 
     .logo-link {
       position: absolute;
       left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 10px;
       display: flex;
       align-items: center;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
     .logo-link:hover {
-      transform: translateY(-50%) scale(1.05) rotate(-1deg);
+      transform: scale(1.05) rotate(-1deg);
       opacity: 0.9;
     }
 
@@ -65,58 +69,39 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    nav a:not(.logo-link) {
-      color: white;
+    nav a {
+      color: var(--white);
       text-decoration: none;
+      margin: 0 20px;
       font-size: 1.1rem;
       font-weight: 500;
+      line-height: 70px; /* matches nav height */
       transition: color 0.3s ease, border-bottom 0.3s ease;
       border-bottom: 2px solid transparent;
-      padding: 8px 0;
-      white-space: nowrap;
     }
 
-    nav a:not(.logo-link):hover {
+    nav a:hover {
       color: #ffe4ec;
       border-bottom: 2px solid #ffe4ec;
     }
 
     .get-started-btn {
-      padding: 8px 16px !important;
-      border: 2px solid white;
+      padding: 8px 16px;
+      border: 2px solid var(--white);
       border-radius: 20px;
       background-color: transparent;
+      line-height: normal;
+      margin: 0 20px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .get-started-btn:hover {
       background-color: #ffe4ec;
-      color: #8B003E;
+      color: var(--primary-color);
       border-color: #ffe4ec;
     }
 
-    /* Mobile menu toggle */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 5px;
-    }
-
-    .menu-toggle span {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 3px 0;
-      transition: 0.3s;
-    }
-    
+    /* Header Section */
     header {
       background-color: var(--primary-color);
       color: var(--white);
@@ -127,15 +112,11 @@
     }
 
     header h1 {
-      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-size: 2.6rem;
       margin-bottom: 10px;
-      word-wrap: break-word;
     }
 
-    header p {
-      font-size: clamp(1rem, 3vw, 1.2rem);
-    }
-
+    /* Main Content Container */
     .container {
       max-width: 720px;
       margin: 60px auto;
@@ -144,29 +125,30 @@
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
       animation: fadeIn 1s ease-in-out;
-      width: calc(100% - 40px);
     }
 
+    /* Keyframe for general fade-in */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Headings within container */
     h2 {
-      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-size: 2rem;
       color: var(--primary-color);
       margin-bottom: 12px;
-      word-wrap: break-word;
     }
 
+    /* Paragraph descriptions and notes */
     p.description {
       margin-bottom: 20px;
-      font-size: clamp(1rem, 2.5vw, 1.05rem);
+      font-size: 1.05rem;
       color: #555;
     }
 
     p.note {
-      font-size: clamp(0.85rem, 2vw, 0.9rem);
+      font-size: 0.9rem;
       color: #a7003b;
       margin-bottom: 20px;
     }
@@ -176,11 +158,12 @@
       font-weight: bold;
     }
 
+    /* Form Labels */
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-weight: 600;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-size: 1rem;
     }
 
     label span {
@@ -188,45 +171,41 @@
       margin-left: 2px;
     }
 
+    /* Form Inputs and Textarea */
     input, textarea {
       width: 100%;
       padding: 14px 16px;
       margin-bottom: 24px;
       border: 1px solid #ccc;
       border-radius: 10px;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-size: 1rem;
       background-color: var(--light-grey);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      -webkit-appearance: none;
-      appearance: none;
     }
 
     input:focus, textarea:focus {
       outline: none;
       border-color: var(--primary-color);
       box-shadow: 0 0 0 3px rgba(139, 0, 62, 0.1);
-      background-color: #fff;
+      background-color: var(--white);
     }
 
     textarea {
       resize: vertical;
       min-height: 130px;
-      font-family: inherit;
     }
 
+    /* Submit Button */
     button {
       background-color: var(--primary-color);
       color: var(--white);
       border: none;
       padding: 14px 32px;
       border-radius: 10px;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      width: 100%;
-      max-width: 200px;
-      touch-action: manipulation;
     }
 
     button:hover {
@@ -234,192 +213,138 @@
       transform: translateY(-2px);
     }
 
-    button:active {
-      transform: translateY(0);
-    }
-
+    /* Footer */
     footer {
       text-align: center;
       margin: 60px 0 30px;
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      font-size: 0.9rem;
       color: #777;
-      padding: 20px;
     }
 
-    /* Tablet styles */
+    /* Responsive Adjustments for Small Screens */
     @media (max-width: 768px) {
-      .nav-links {
-        gap: 15px;
-      }
-      
-      nav a:not(.logo-link) {
-        font-size: 1rem;
-      }
-      
-      .container {
-        margin: 40px auto;
-        padding: 30px 25px;
-      }
-      
-      header {
-        padding: 30px 15px;
-      }
-    }
-
-    /* Mobile styles */
-    @media (max-width: 600px) {
+      /* Navigation Bar */
       nav {
-        padding: 0 15px;
-        height: 60px;
-      }
-
-      .logo {
-        height: 35px;
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+        position: relative; /* Make nav scrollable on small screens */
+        top: auto;
+        z-index: auto;
       }
 
       .logo-link {
-        left: 15px;
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 10px;
       }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--primary-color);
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        gap: 10px;
+      nav a {
+        margin: 5px 10px; /* Reduce margin for links */
+        font-size: 1rem;
+        line-height: normal;
+        padding: 5px 0;
       }
 
-      .nav-links.active {
-        display: flex;
+      .get-started-btn {
+        margin: 10px auto; /* Center button */
       }
 
-      .nav-links a {
-        padding: 10px 0;
-        text-align: center;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-      }
-
-      .nav-links a:last-child {
-        border-bottom: none;
-      }
-
-      .menu-toggle {
-        display: flex;
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .menu-toggle.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-      }
-
-      .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-      }
-
-      .container {
-        margin: 30px 15px;
-        padding: 25px 20px;
-        border-radius: 15px;
-        width: calc(100% - 30px);
-      }
-
+      /* Header */
       header {
-        padding: 25px 15px;
+        padding: 30px 15px; /* Adjust header padding for mobile */
       }
 
-      button {
-        padding: 12px 24px;
-        max-width: none;
+      header h1 {
+        font-size: 2.2rem; /* Smaller font size for mobile */
       }
 
+      /* Main Container */
+      .container {
+        margin: 30px 15px; /* Adjust margin for mobile to prevent collision with edges */
+        padding: 30px 20px; /* Adjust padding */
+      }
+
+      h2 {
+        font-size: 1.8rem; /* Smaller font size for mobile */
+      }
+
+      p.description {
+        font-size: 0.95rem; /* Smaller font size */
+      }
+
+      p.note {
+        font-size: 0.85rem; /* Smaller font size */
+      }
+
+      label {
+        font-size: 0.95rem;
+      }
+
+      /* Form Inputs and Textarea */
       input, textarea {
-        padding: 12px 14px;
+        padding: 12px;
         margin-bottom: 20px;
+        font-size: 0.95rem;
       }
 
       textarea {
-        min-height: 120px;
+        min-height: 100px; /* Slightly smaller textarea */
       }
 
+      /* Submit Button */
+      button {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
       footer {
-        margin: 40px 0 20px;
-        padding: 15px;
+        margin: 40px 0 20px; /* Adjust margin for mobile */
+        font-size: 0.8rem;
       }
     }
 
-    /* Small mobile devices */
-    @media (max-width: 380px) {
+    /* Further adjustments for very small screens (e.g., iPhone SE) */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
       .container {
         margin: 20px 10px;
-        padding: 20px 15px;
-        width: calc(100% - 20px);
+        padding: 25px 15px;
       }
 
-      header {
-        padding: 20px 10px;
+      h2 {
+        font-size: 1.6rem;
       }
 
-      nav {
-        padding: 0 10px;
+      p.description {
+        font-size: 0.9rem;
       }
 
-      .logo-link {
-        left: 10px;
-      }
-
-      .menu-toggle {
-        right: 10px;
+      label {
+        font-size: 0.9rem;
       }
 
       input, textarea {
-        padding: 10px 12px;
+        padding: 10px;
+        margin-bottom: 18px;
+        font-size: 0.9rem;
+      }
+
+      textarea {
+        min-height: 80px;
       }
 
       button {
         padding: 10px 20px;
+        font-size: 0.9rem;
       }
-    }
 
-    /* Touch and accessibility improvements */
-    @media (hover: none) {
-      button:hover {
-        transform: none;
-      }
-      
-      nav a:hover {
-        color: white;
-        border-bottom-color: transparent;
-      }
-    }
-
-    /* High DPI displays */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-      .logo {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-      }
-    }
-
-    /* Landscape mobile orientation */
-    @media (max-width: 900px) and (orientation: landscape) {
-      header {
-        padding: 20px 15px;
-      }
-      
-      .container {
-        margin: 30px auto;
+      footer {
+        margin: 30px 0 15px;
+        font-size: 0.75rem;
       }
     }
   </style>
@@ -430,19 +355,10 @@
     <a href="index.html" class="logo-link">
       <img src="gilas.png" alt="Gilas Logo" class="logo" />
     </a>
-    
-    <div class="nav-links" id="navLinks">
-      <a href="get-started.html" class="get-started-btn">Get Started</a>
-      <a href="professionals.html">Professionals</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="menu-toggle" id="menuToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+    <a href="get-started.html" class="get-started-btn">Get Started</a>
+    <a href="professionals.html">Professionals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <header>
@@ -452,7 +368,7 @@
 
   <main>
     <div class="container">
-      <h2>We'd love to hear from you</h2>
+      <h2>We’d love to hear from you</h2>
       <p class="description">
         Whether you have questions, feedback, or partnership ideas — send us a message below. Your insights shape the future of Gilas.
       </p>
@@ -460,10 +376,10 @@
 
       <form action="#" method="POST" aria-label="Contact Form">
         <label for="name">Your Name<span>*</span></label>
-        <input type="text" id="name" name="name" placeholder="e.g., Maryam Firouzi" required autocomplete="name" />
+        <input type="text" id="name" name="name" placeholder="e.g., Maryam Firouzi" required />
 
         <label for="email">Your Email<span>*</span></label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
         <label for="message">Your Message<span>*</span></label>
         <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
@@ -476,74 +392,6 @@
   <footer>
     © 2025 Gilas — Data-powered career clarity
   </footer>
-
-  <script>
-    // Mobile menu toggle functionality
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
-      menuToggle.classList.toggle('active');
-    });
-
-    // Close menu when clicking on a link
-    navLinks.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!nav.contains(e.target)) {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-      }
-    });
-
-    // Handle form submission with better UX
-    const form = document.querySelector('form');
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Disable button and show loading state
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-      
-      // Simulate form submission (replace with actual form handling)
-      setTimeout(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Send Message';
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        form.reset();
-      }, 2000);
-    });
-
-    // Improve form accessibility
-    const inputs = document.querySelectorAll('input, textarea');
-    inputs.forEach(input => {
-      input.addEventListener('invalid', function(e) {
-        e.target.setCustomValidity('');
-        if (!e.target.validity.valid) {
-          switch(e.target.type) {
-            case 'email':
-              e.target.setCustomValidity('Please enter a valid email address');
-              break;
-            default:
-              e.target.setCustomValidity('This field is required');
-          }
-        }
-      });
-      
-      input.addEventListener('input', function(e) {
-        e.target.setCustomValidity('');
-      });
-    });
-  </script>
 
 </body>
 </html>
