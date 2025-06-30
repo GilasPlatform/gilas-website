@@ -6,32 +6,37 @@
   <title>Gilas Platform Navigation</title>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
+    /* Base styles for body and typography */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fff1f4;
       color: #2c0e14;
-      overflow-x: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll */
       padding-bottom: 50px;
     }
 
+    /* Navigation Bar */
     nav {
       background-color: #8B003E;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
+      justify-content: center;
+      padding: 0;
       height: 70px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     }
 
     .logo-link {
+      position: absolute;
+      left: 20px;
+      top: 10px;
       display: flex;
       align-items: center;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      flex-shrink: 0;
     }
 
     .logo-link:hover {
@@ -46,22 +51,15 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
     nav a {
       color: white;
       text-decoration: none;
+      margin: 0 20px;
       font-size: 1.1rem;
       font-weight: 500;
       line-height: 70px;
       transition: color 0.3s ease, border-bottom 0.3s ease;
       border-bottom: 2px solid transparent;
-      white-space: nowrap;
     }
 
     nav a:hover {
@@ -75,6 +73,7 @@
       border-radius: 20px;
       background-color: transparent;
       line-height: normal;
+      margin: 0 20px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -84,51 +83,7 @@
       border-color: #ffe4ec;
     }
 
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      nav {
-        height: auto;
-        min-height: 70px;
-        padding: 10px 20px;
-      }
-      
-      .nav-links {
-        gap: 15px;
-      }
-      
-      nav a {
-        font-size: 0.9rem;
-        line-height: 1.2;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .nav-links {
-        gap: 10px;
-      }
-      
-      nav a {
-        font-size: 0.8rem;
-      }
-      
-      .get-started-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-      }
-      
-      .nav-links {
-        justify-content: center;
-      }
-    }
-
+    /* Header Section */
     header {
       background-color: #8B003E;
       color: white;
@@ -154,21 +109,24 @@
       font-size: 1.05rem;
     }
 
+    /* Main Container for Bubbles */
     .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      padding: 80px 20px 100px;
+      padding: 80px 20px 100px; /* Ensure sufficient top padding for initial bubbles */
       animation: fadeIn 1s ease-in;
       min-height: calc(100vh - 110px);
       box-sizing: border-box;
+      overflow-x: hidden;
     }
 
     .blurred {
       filter: blur(5px) brightness(0.8);
     }
 
+    /* Bubble Styles */
     .bubble {
       width: 140px;
       height: 140px;
@@ -188,12 +146,14 @@
       transition: transform 0.6s ease, opacity 0.6s ease;
       opacity: 0;
       animation: appear 1s forwards;
+      flex-shrink: 0; /* Prevent shrinking on smaller screens */
     }
 
     .bubble:hover {
       transform: scale(1.1);
     }
 
+    /* Overlay Styles (for countries, states, cities) */
     .overlay {
       position: fixed;
       top: 0;
@@ -206,9 +166,10 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      padding: 50px 20px;
+      padding: 50px 20px; /* Default padding for overlays */
       overflow-y: auto;
       animation: fadeIn 1s ease-in-out;
+      box-sizing: border-box; /* Include padding in width/height */
     }
 
     /* Job Categories Overlay Styles */
@@ -221,9 +182,10 @@
       background: rgba(255, 255, 255, 0.95);
       z-index: 999;
       display: none;
-      padding: 120px 40px 40px;
+      padding: 120px 40px 40px; /* Default padding for job categories overlay */
       overflow-y: auto;
       animation: fadeIn 0.8s ease-in-out;
+      box-sizing: border-box; /* Include padding in width/height */
     }
 
     .city-title {
@@ -232,6 +194,7 @@
       color: #8B003E;
       margin-bottom: 40px;
       font-weight: bold;
+      width: 100%; /* Ensure title takes full width */
     }
 
     .category-card {
@@ -246,6 +209,8 @@
       box-shadow: 0 8px 25px rgba(139, 0, 62, 0.3);
       position: relative;
       overflow: hidden;
+      width: calc(100% - 30px); /* Adjust width for mobile padding */
+      box-sizing: border-box;
     }
 
     .category-card:hover {
@@ -296,7 +261,7 @@
     }
 
     .jobs-waterfall.active {
-      max-height: 500px;
+      max-height: 500px; /* Increased for more content */
       padding: 20px 0 10px;
       margin-top: 15px;
     }
@@ -325,6 +290,7 @@
       box-shadow: 0 4px 15px rgba(139, 0, 62, 0.2);
     }
 
+    /* Back Button */
     .back-button {
       position: fixed;
       top: 90px;
@@ -345,6 +311,7 @@
       background: #a0214e;
     }
 
+    /* Keyframe Animations */
     @keyframes appear {
       to { opacity: 1; }
     }
@@ -368,6 +335,112 @@
     .job-item.animate-in {
       animation: waterfallIn 0.4s ease-out forwards;
     }
+
+    /* Responsive Adjustments for Small Screens */
+    @media (max-width: 768px) {
+      /* Navigation Bar */
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+      }
+
+      .logo-link {
+        position: static; /* Remove absolute positioning */
+        margin-bottom: 10px;
+      }
+
+      nav a {
+        margin: 5px 10px; /* Reduce margin for links */
+        font-size: 1rem;
+        line-height: normal;
+        padding: 5px 0;
+      }
+
+      .get-started-btn {
+        margin: 10px auto; /* Center button */
+      }
+
+      /* Header */
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      /* Main Container and Bubbles */
+      .container {
+        padding: 40px 10px; /* Reduce horizontal padding, keep vertical padding */
+      }
+
+      .bubble {
+        width: 120px; /* Slightly smaller bubbles */
+        height: 120px;
+        font-size: 1rem;
+        margin: 10px; /* Reduce margin between bubbles */
+      }
+
+      /* Overlays */
+      .overlay, .job-categories-overlay {
+        padding: 100px 10px 20px; /* Increased top padding for overlays on smaller screens */
+      }
+
+      .city-title {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .category-card {
+        padding: 15px 20px;
+        margin: 10px auto;
+      }
+
+      .category-title {
+        font-size: 1.2rem;
+      }
+
+      .job-item {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+
+      /* Back Button */
+      .back-button {
+        top: 20px; /* Adjusted top for better spacing on mobile */
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Further adjustments for very small screens (e.g., iPhone SE) */
+    @media (max-width: 480px) {
+      .bubble {
+        width: 100px; /* Even smaller bubbles */
+        height: 100px;
+        font-size: 0.9rem;
+        margin: 8px;
+      }
+
+      .category-card {
+        padding: 12px 15px;
+      }
+
+      .category-title {
+        font-size: 1.1rem;
+      }
+
+      .job-item {
+        font-size: 0.85rem;
+      }
+
+      /* Overlays for very small screens */
+      .overlay, .job-categories-overlay {
+        padding: 90px 5px 10px; /* Further increased top padding for very small screens */
+      }
+    }
   </style>
 </head>
 <body>
@@ -375,12 +448,10 @@
     <a href="index.html" class="logo-link">
       <img src="gilas.png" alt="Gilas Logo" class="logo" />
     </a>
-    <div class="nav-links">
-      <a href="get-started.html" class="get-started-btn">Get Started</a>
-      <a href="professionals.html">Professionals</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
+    <a href="get-started.html" class="get-started-btn">Get Started</a>
+    <a href="professionals.html">Professionals</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <header>
@@ -478,101 +549,92 @@
 
     const continents = Object.keys(countryList);
     const container = document.getElementById('continentContainer');
-    continents.forEach(continent => {
-      const div = document.createElement('div');
-      div.className = 'bubble';
-      div.textContent = continent;
-      div.onclick = () => showCountries(continent);
-      container.appendChild(div);
-    });
+
+    // Function to create and append bubbles
+    function createBubbles(items, onClickHandler, parentElement) {
+      parentElement.innerHTML = ''; // Clear existing content
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'bubble';
+        div.textContent = item;
+        div.onclick = () => onClickHandler(item);
+        parentElement.appendChild(div);
+      });
+    }
+
+    // Initial population of continent bubbles
+    createBubbles(continents, showCountries, container);
 
     function showCountries(continent) {
       navStack.push('continent');
       container.classList.add('blurred');
       const overlay = document.getElementById('countryOverlay');
-      overlay.innerHTML = '';
       overlay.style.display = 'flex';
       document.querySelector('.back-button').style.display = 'block';
-      countryList[continent].forEach(country => {
-        const div = document.createElement('div');
-        div.className = 'bubble';
-        div.textContent = country;
-        div.onclick = () => {
-          if (country === 'United States') {
-            showStates();
-          } else {
-            overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding-top:20px;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${country}</b>. We appreciate your patience.</div>`;
-          }
-        };
-        overlay.appendChild(div);
-      });
+
+      createBubbles(countryList[continent], (country) => {
+        if (country === 'United States') {
+          showStates();
+        } else {
+          // Display message for unsupported countries
+          overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${country}</b>. We appreciate your patience.</div>`;
+        }
+      }, overlay);
     }
 
     function showStates() {
       navStack.push('country');
       document.getElementById('countryOverlay').style.display = 'none';
       const overlay = document.getElementById('stateOverlay');
-      overlay.innerHTML = '';
       overlay.style.display = 'flex';
-      Object.keys(usStates).sort().forEach(state => {
-        const div = document.createElement('div');
-        div.className = 'bubble';
-        div.textContent = state;
-        div.onclick = () => showCities(state);
-        overlay.appendChild(div);
-      });
+
+      createBubbles(Object.keys(usStates).sort(), showCities, overlay);
     }
 
     function showCities(state) {
       navStack.push('state');
       document.getElementById('stateOverlay').style.display = 'none';
       const overlay = document.getElementById('cityOverlay');
-      overlay.innerHTML = '';
       overlay.style.display = 'flex';
-      usStates[state].sort().forEach(city => {
-        const div = document.createElement('div');
-        div.className = 'bubble';
-        div.textContent = city;
-        div.onclick = () => showJobCategories(city);
-        overlay.appendChild(div);
-      });
+
+      createBubbles(usStates[state].sort(), showJobCategories, overlay);
     }
 
     function showJobCategories(city) {
       navStack.push('city');
       document.getElementById('cityOverlay').style.display = 'none';
       container.classList.add('blurred');
-      
+
       const overlay = document.getElementById('jobCategoriesOverlay');
       overlay.innerHTML = '';
       overlay.style.display = 'block';
-      
+
       // City title
       const cityTitle = document.createElement('div');
       cityTitle.className = 'city-title';
       cityTitle.textContent = `Job Categories in ${city}`;
       overlay.appendChild(cityTitle);
-      
+
       // Create category cards
       Object.keys(jobCategories).forEach(category => {
         const categoryCard = document.createElement('div');
         categoryCard.className = 'category-card';
         categoryCard.onclick = () => toggleCategory(categoryCard, category);
-        
+
         const categoryTitle = document.createElement('h3');
         categoryTitle.className = 'category-title';
         categoryTitle.innerHTML = `${category} <span class="category-arrow">▼</span>`;
-        
+
         const jobsWaterfall = document.createElement('div');
         jobsWaterfall.className = 'jobs-waterfall';
-        
+
         jobCategories[category].forEach(job => {
           const jobItem = document.createElement('div');
           jobItem.className = 'job-item';
           jobItem.textContent = job;
           jobsWaterfall.appendChild(jobItem);
         });
-        
+
         categoryCard.appendChild(categoryTitle);
         categoryCard.appendChild(jobsWaterfall);
         overlay.appendChild(categoryCard);
@@ -582,7 +644,7 @@
     function toggleCategory(categoryCard, category) {
       const jobsWaterfall = categoryCard.querySelector('.jobs-waterfall');
       const jobItems = jobsWaterfall.querySelectorAll('.job-item');
-      
+
       // Close other categories
       if (activeCategory && activeCategory !== categoryCard) {
         activeCategory.classList.remove('active');
@@ -591,7 +653,7 @@
         const activeItems = activeWaterfall.querySelectorAll('.job-item');
         activeItems.forEach(item => item.classList.remove('show'));
       }
-      
+
       // Toggle current category
       if (categoryCard.classList.contains('active')) {
         categoryCard.classList.remove('active');
@@ -602,7 +664,7 @@
         categoryCard.classList.add('active');
         jobsWaterfall.classList.add('active');
         activeCategory = categoryCard;
-        
+
         // Animate job items with staggered delay
         jobItems.forEach((item, index) => {
           setTimeout(() => {
