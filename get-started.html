@@ -163,14 +163,29 @@
       background: rgba(255, 255, 255, 0.95);
       z-index: 999;
       display: none;
-      justify-content: center;
-      align-items: flex-start; /* Changed to flex-start to prevent bottom collision */
+      justify-content: center; /* Default to center for message, overridden for bubbles */
+      align-items: flex-start; /* Default for bubbles, overridden for message */
       flex-wrap: wrap;
       padding: 50px 20px; /* Default padding for overlays */
       overflow-y: auto;
       animation: fadeIn 1s ease-in-out;
       box-sizing: border-box; /* Include padding in width/height */
     }
+
+    /* Style for the unsupported country message container */
+    .unsupported-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%; /* Take full height of the overlay to allow vertical centering */
+        text-align: center;
+        font-size: 1.2rem;
+        color: #8B003E;
+        padding: 20px; /* Add padding to the message itself */
+        box-sizing: border-box;
+    }
+
 
     /* Job Categories Overlay Styles */
     .job-categories-overlay {
@@ -388,8 +403,8 @@
       /* Overlays */
       .overlay, .job-categories-overlay {
         /* Increased top padding to account for fixed back button and clear space */
-        padding: 100px 10px 40px; /* Increased bottom padding to 40px */
-        align-items: flex-start; /* Ensure content starts from top */
+        padding: 100px 10px 60px; /* Increased bottom padding to 60px for more clearance */
+        /* align-items: flex-start;  Removed as it will be set dynamically or by default for bubbles */
       }
 
       .city-title {
@@ -444,7 +459,7 @@
       /* Overlays for very small screens */
       .overlay, .job-categories-overlay {
         /* Further increased top padding for very small screens */
-        padding: 90px 5px 30px; /* Increased bottom padding to 30px */
+        padding: 90px 5px 50px; /* Increased bottom padding to 50px for more clearance */
       }
     }
   </style>
@@ -580,6 +595,11 @@
                 // Hide back button
                 backButton.style.display = 'none';
 
+                // Reset overlay alignment for bubbles
+                document.getElementById('countryOverlay').style.justifyContent = 'center';
+                document.getElementById('countryOverlay').style.alignItems = 'flex-start';
+
+
                 // Re-create continent bubbles
                 createBubbles(continents, (continent) => {
                     navigateTo({ type: 'country', data: continent });
@@ -601,6 +621,11 @@
                 // Show current overlay
                 const overlay = document.getElementById('countryOverlay');
                 overlay.style.display = 'flex';
+
+                // Set overlay alignment for bubbles
+                overlay.style.justifyContent = 'center';
+                overlay.style.alignItems = 'flex-start';
+
 
                 // Show back button
                 backButton.style.display = 'block';
@@ -631,8 +656,13 @@
                 // Show the country overlay and display the message
                 const overlay = document.getElementById('countryOverlay');
                 overlay.style.display = 'flex';
+
+                // Set overlay alignment to center the message
+                overlay.style.justifyContent = 'center';
+                overlay.style.alignItems = 'center';
+
                 // Clear existing bubbles and display message
-                overlay.innerHTML = `<div style='text-align:center; font-size:1.2rem; width:100%; padding:20px; color: #8B003E;'>Thank you for your interest in Gilas. We are working on expanding support for <b>${data.country}</b>. We appreciate your patience.</div>`;
+                overlay.innerHTML = `<div class="unsupported-message">Thank you for your interest in Gilas. We are working on expanding support for <b>${data.country}</b>. We appreciate your patience.</div>`;
 
                 // Show back button
                 backButton.style.display = 'block';
@@ -653,6 +683,10 @@
                 // Show current overlay
                 const overlay = document.getElementById('stateOverlay');
                 overlay.style.display = 'flex';
+
+                // Set overlay alignment for bubbles
+                overlay.style.justifyContent = 'center';
+                overlay.style.alignItems = 'flex-start';
 
                 // Show back button
                 backButton.style.display = 'block';
@@ -679,6 +713,10 @@
                 const overlay = document.getElementById('cityOverlay');
                 overlay.style.display = 'flex';
 
+                // Set overlay alignment for bubbles
+                overlay.style.justifyContent = 'center';
+                overlay.style.alignItems = 'flex-start';
+
                 // Show back button
                 backButton.style.display = 'block';
 
@@ -704,6 +742,9 @@
                 const overlay = document.getElementById('jobCategoriesOverlay');
                 overlay.innerHTML = ''; // Clear existing content for job categories
                 overlay.style.display = 'block'; // Use block for job categories overlay
+
+                // Job categories overlay does not use flex-wrap for its direct children (category-card)
+                // so no need to set justify-content/align-items here.
 
                 // Show back button
                 backButton.style.display = 'block';
