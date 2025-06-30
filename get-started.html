@@ -175,15 +175,24 @@
     /* Style for the unsupported country message container */
     .unsupported-message {
         display: flex;
+        flex-direction: column; /* Stack content vertically */
         justify-content: center;
         align-items: center;
         width: 100%;
+        max-width: 500px; /* Limit width on larger screens */
         height: 100%; /* Take full height of the overlay to allow vertical centering */
         text-align: center;
         font-size: 1.2rem;
         color: #8B003E;
-        padding: 20px; /* Add padding to the message itself */
+        padding: 30px; /* Increased padding for the message box itself */
         box-sizing: border-box;
+        background-color: #fff; /* White background for the message box */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+        line-height: 1.5;
+    }
+    .unsupported-message b {
+        color: #a0214e; /* Slightly different color for emphasis */
     }
 
 
@@ -403,7 +412,7 @@
       /* Overlays */
       .overlay, .job-categories-overlay {
         /* Increased top padding to account for fixed back button and clear space */
-        padding: 100px 10px 60px; /* Increased bottom padding to 60px for more clearance */
+        padding: 100px 10px 80px; /* Increased bottom padding to 80px for more clearance */
         /* align-items: flex-start;  Removed as it will be set dynamically or by default for bubbles */
       }
 
@@ -459,7 +468,7 @@
       /* Overlays for very small screens */
       .overlay, .job-categories-overlay {
         /* Further increased top padding for very small screens */
-        padding: 90px 5px 50px; /* Increased bottom padding to 50px for more clearance */
+        padding: 90px 5px 70px; /* Increased bottom padding to 70px for more clearance */
       }
     }
   </style>
